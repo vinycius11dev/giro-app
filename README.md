@@ -136,7 +136,7 @@ No Expo, pressione `w` para navegador ou `a` para emulador Android. Também é p
 
 ## Testes e evidências
 
-O roteiro manual está em [docs/roteiro-de-testes.md](docs/roteiro-de-testes.md). As evidências abaixo foram capturadas diretamente da prévia web do aplicativo, com a interface em estado funcional.
+O roteiro manual de testes está em [docs/roteiro-de-testes.md](docs/roteiro-de-testes.md). Nesta seção reunimos as evidências dos principais fluxos executados na versão web do aplicativo.
 
 ## Evidências visuais
 
@@ -159,7 +159,7 @@ O roteiro manual está em [docs/roteiro-de-testes.md](docs/roteiro-de-testes.md)
 | Cadastro de produto | <img src="docs/evidencias/10-cadastro-produto.png" width="220" alt="Formulário de cadastro" /> |
 | Filtro “Agir hoje” | <img src="docs/evidencias/11-filtro-urgencia.png" width="220" alt="Produtos filtrados por urgência" /> |
 
-Os arquivos originais estão em [docs/evidencias](docs/evidencias). Para o CP6, ainda é importante gravar um vídeo curto navegando no app e anexar o print do APK instalado em um aparelho Android.
+Os arquivos originais das evidências estão em [docs/evidencias](docs/evidencias). Como complemento da entrega do CP6, será anexado um vídeo curto de navegação e um print do APK instalado em um aparelho Android.
 
 ## Gerar APK (CP6)
 
@@ -172,7 +172,7 @@ eas build --platform android --profile preview
 
 O último comando fornece, na conta Expo conectada, um link para baixar o APK instalável.
 
-## Status para finalizar a entrega
+## Checklist da entrega
 
 - [x] Aplicativo funcional em React Native/Expo com telas, modais e persistência local.
 - [x] Login, cadastro, logout e sincronização do avatar com sessão local testados.
@@ -185,7 +185,7 @@ O último comando fornece, na conta Expo conectada, um link para baixar o APK in
 
 ## Integrantes e papéis
 
-> Papéis sugeridos para organizar a apresentação; ajuste-os caso a divisão real do grupo seja diferente.
+Esta foi a divisão de responsabilidades adotada pela equipe:
 
 | Integrante | RM | Papel desempenhado |
 | --- | --- | --- |
