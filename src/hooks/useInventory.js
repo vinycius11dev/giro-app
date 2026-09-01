@@ -154,7 +154,18 @@ export default function useInventory() {
     setData((current) => ({ ...current, largeText: !current.largeText }));
   }
   function resetDemo() {
-    setData(freshData());
+    setData((current) => {
+      const demo = freshData();
+      return {
+        ...demo,
+        // Restaurar os produtos de demonstração não deve trocar a identidade
+        // nem apagar preferências da conta que está atualmente conectada.
+        profile: current.profile,
+        alertsEnabled: current.alertsEnabled,
+        darkMode: current.darkMode,
+        largeText: current.largeText,
+      };
+    });
   }
 
   return {

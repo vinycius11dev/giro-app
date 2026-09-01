@@ -154,30 +154,27 @@ No Expo, pressione `w` para navegador ou `a` para emulador Android. Também é p
 
 O roteiro manual de testes está em [docs/roteiro-de-testes.md](docs/roteiro-de-testes.md). Nesta seção reunimos as evidências dos principais fluxos executados na versão web do aplicativo.
 
-## Evidências visuais
+## Telas e navegação
 
-| Fluxo | Print |
+| Tela | Objetivo e principais interações |
 | --- | --- |
-| Login | <img src="docs/evidencias/12-login.png" width="220" alt="Tela de login" /> |
-| Cadastro de conta | <img src="docs/evidencias/13-cadastro-conta.png" width="220" alt="Tela de cadastro de conta" /> |
-| Apresentação do projeto | <img src="docs/evidencias/14-apresentacao-projeto.png" width="220" alt="Apresentação interativa do projeto" /> |
-| Apresentação — modelo de negócio | <img src="docs/evidencias/15-apresentacao-negocio.png" width="220" alt="Seção de modelo de negócio da apresentação" /> |
-| Apresentação — CP4, CP5 e CP6 | <img src="docs/evidencias/16-apresentacao-cp4-cp6.png" width="220" alt="Seção acadêmica da apresentação" /> |
-| Onboarding | <img src="docs/evidencias/17-onboarding.png" width="220" alt="Onboarding inicial do Giro" /> |
-| Sobre o projeto | <img src="docs/evidencias/18-sobre-projeto.png" width="220" alt="Tela sobre o projeto" /> |
-| Painel inicial | <img src="docs/evidencias/01-dashboard.png" width="220" alt="Painel inicial do Giro" /> |
-| Lista de produtos | <img src="docs/evidencias/02-produtos.png" width="220" alt="Lista de produtos" /> |
-| Detalhe e ações do produto | <img src="docs/evidencias/03-detalhe-produto.png" width="220" alt="Detalhe do produto" /> |
-| Histórico | <img src="docs/evidencias/04-historico.png" width="220" alt="Histórico de ações" /> |
-| Conta e configurações | <img src="docs/evidencias/05-conta.png" width="220" alt="Tela de conta" /> |
-| Alertas | <img src="docs/evidencias/06-alertas.png" width="220" alt="Tela de alertas" /> |
-| Oportunidades | <img src="docs/evidencias/07-oportunidades.png" width="220" alt="Tela de oportunidades" /> |
-| Relatórios | <img src="docs/evidencias/08-relatorios.png" width="220" alt="Tela de relatórios" /> |
-| Impacto | <img src="docs/evidencias/09-impacto.png" width="220" alt="Tela de impacto" /> |
-| Cadastro de produto | <img src="docs/evidencias/10-cadastro-produto.png" width="220" alt="Formulário de cadastro" /> |
-| Filtro “Agir hoje” | <img src="docs/evidencias/11-filtro-urgencia.png" width="220" alt="Produtos filtrados por urgência" /> |
+| Onboarding | Apresenta a proposta do Giro em três etapas e direciona para o primeiro acesso. |
+| Login | Permite entrar com a conta local, acessar a demonstração ou abrir a apresentação institucional. |
+| Cadastro de conta | Cria o perfil do responsável e do estabelecimento; a consulta de CEP preenche endereço e cidade automaticamente, com edição manual. |
+| Início | Resume itens vencendo, prioridades, impacto e atalhos para as áreas mais importantes. |
+| Produtos | Lista o estoque com busca, filtros por urgência e ordenação por validade, nome, quantidade ou categoria. |
+| Cadastro/edição de produto | Registra nome, categoria, quantidade e validade usando calendário, atalhos rápidos e validações. |
+| Detalhe do produto | Exibe a situação do item e permite ofertar, doar, descartar, editar ou excluir. |
+| Histórico | Mostra as ações já realizadas e o resultado das decisões sobre o estoque. |
+| Conta | Edita dados do estabelecimento, consulta CEP, controla alertas, tema, tamanho do texto, ajuda e logout. |
+| Alertas | Reúne produtos que exigem ação imediata, organizados por prioridade. |
+| Oportunidades | Sugere descontos e destinos para produtos próximos do vencimento. |
+| Relatórios | Apresenta totais, aproveitamento e distribuição do estoque por categoria. |
+| Impacto | Mostra ofertas, doações, descartes evitados e a evolução do aproveitamento. |
+| Sobre o projeto | Explica tecnologias, proposta, ODS e decisões do desenvolvimento. |
+| Apresentação do projeto | Navega por visão, funcionamento, modelo de negócio, impacto e relação com CP4, CP5 e CP6. |
 
-Os arquivos originais das evidências estão em [docs/evidencias](docs/evidencias). Como complemento da entrega do CP6, será anexado um vídeo curto de navegação e um print do APK instalado em um aparelho Android.
+O fluxo principal é: **entrar → cadastrar produto → acompanhar a prioridade → escolher um destino → consultar o histórico e o impacto**. Para o CP6, ainda será anexado um vídeo curto de navegação e o registro do APK instalado em um aparelho Android.
 
 ## Gerar APK (CP6)
 
@@ -196,11 +193,11 @@ O último comando fornece, na conta Expo conectada, um link para baixar o APK in
 - [x] Login, cadastro, logout e sincronização do avatar com sessão local testados.
 - [x] Consulta de CEP integrada no cadastro e no perfil, com tratamento de CEP inválido e fallback manual.
 - [x] Identidade visual, logo, ícone e favicon configurados.
-- [x] Roteiro de testes e 18 prints de evidência adicionados ao repositório.
+- [x] Roteiro de testes e documentação textual das telas adicionados ao repositório.
 - [x] Build web validado com `npx expo export --platform web`.
 - [x] Expo Doctor aprovado com 21/21 verificações.
 - [ ] Gerar o APK pelo EAS usando a conta Expo do grupo.
-- [ ] Instalar o APK em Android e anexar print/vídeo da execução real.
+- [ ] Instalar o APK em Android e anexar o vídeo da execução real.
 
 ## Integrantes e papéis
 

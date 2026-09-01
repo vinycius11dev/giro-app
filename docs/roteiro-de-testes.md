@@ -39,13 +39,8 @@
 
 ## Evidências para a entrega
 
-1. Print do painel inicial com os três indicadores.
-2. Print do cadastro de produto.
-3. Print da lista filtrada por urgência.
-4. Print do detalhe e de uma ação de oferta/doação.
-5. Print do histórico atualizado.
-6. Vídeo curto navegando entre Início, Produtos e Histórico.
-7. Print das telas Alertas, Oportunidades, Relatórios e Impacto.
-8. Print das telas de Login e Cadastro.
-9. Print da apresentação institucional com a proposta e o modelo de negócio.
-10. Print do onboarding e da tela Sobre o projeto.
+1. Vídeo curto navegando entre Início, Produtos e Histórico.
+2. Vídeo demonstrando cadastro de produto, filtro, oferta/doação e histórico atualizado.
+3. Vídeo ou registro textual das telas Alertas, Oportunidades, Relatórios e Impacto.
+4. Vídeo do fluxo de Login, Cadastro e apresentação institucional.
+5. Vídeo do onboarding e da tela Sobre o projeto.
