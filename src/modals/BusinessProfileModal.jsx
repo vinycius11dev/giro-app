@@ -116,17 +116,19 @@ export default function BusinessProfileModal({
             keyboardType="numeric"
             maxLength={9}
             styles={styles}
+            rightAction={(
+              <Pressable
+                style={({ pressed }) => [styles.cepLookupButton, pressed && { opacity: 0.82 }]}
+                onPress={searchCep}
+                disabled={cepLoading}
+                accessibilityRole="button"
+                accessibilityLabel="Buscar endereço pelo CEP"
+                accessibilityHint="Consulta o endereço informado"
+              >
+                {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={19} color="#0D6A49" />}
+              </Pressable>
+            )}
           />
-          <Pressable
-            style={({ pressed }) => [styles.cepLookupButton, styles.modalCepLookup, pressed && { opacity: 0.82 }]}
-            onPress={searchCep}
-            disabled={cepLoading}
-            accessibilityRole="button"
-            accessibilityLabel="Buscar endereço pelo CEP"
-          >
-            {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={16} color="#0D6A49" />}
-            <Text style={styles.cepLookupText}>{cepLoading ? "Consultando CEP..." : "Buscar endereço pelo CEP"}</Text>
-          </Pressable>
           {cepError ? <Text style={styles.cepError}>{cepError} Você ainda pode preencher os campos manualmente.</Text> : null}
           <FormField
             label="Endereço"

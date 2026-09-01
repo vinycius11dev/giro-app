@@ -13,22 +13,25 @@ import {
 } from "react-native";
 import { formatCep, lookupCep } from "../services/cep";
 
-function Field({ icon, label, value, onChangeText, placeholder, secure, styles, ...inputProps }) {
+function Field({ icon, label, value, onChangeText, placeholder, secure, styles, rightAction, ...inputProps }) {
   return (
     <View>
       <Text style={styles.authLabel}>{label}</Text>
-      <View style={styles.authInputWrap}>
-        <Ionicons name={icon} size={18} color="#7A8980" />
-        <TextInput
-          value={value}
-          onChangeText={onChangeText}
-          placeholder={placeholder}
-          placeholderTextColor="#A3ACA6"
-          secureTextEntry={secure}
-          autoCapitalize={secure ? "none" : "words"}
-          style={styles.authInput}
-          {...inputProps}
-        />
+      <View style={rightAction ? styles.cepFieldRow : undefined}>
+        <View style={[styles.authInputWrap, rightAction && styles.cepInputWrap]}>
+          <Ionicons name={icon} size={18} color="#7A8980" />
+          <TextInput
+            value={value}
+            onChangeText={onChangeText}
+            placeholder={placeholder}
+            placeholderTextColor="#A3ACA6"
+            secureTextEntry={secure}
+            autoCapitalize={secure ? "none" : "words"}
+            style={styles.authInput}
+            {...inputProps}
+          />
+        </View>
+        {rightAction}
       </View>
     </View>
   );
@@ -128,17 +131,28 @@ export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
           <Field icon="mail-outline" label="E-mail" value={form.email} onChangeText={update("email")} placeholder="voce@empresa.com" styles={styles} />
           <Field icon="lock-closed-outline" label="Senha" value={form.password} onChangeText={update("password")} placeholder="Mínimo de 6 caracteres" secure styles={styles} />
           <View>
-            <Field icon="navigate-outline" label="CEP (opcional)" value={form.cep} onChangeText={(value) => update("cep")(formatCep(value))} placeholder="00000-000" keyboardType="numeric" maxLength={9} styles={styles} />
-            <Pressable
-              style={({ pressed }) => [styles.cepLookupButton, pressed && { opacity: 0.82 }]}
-              onPress={searchCep}
-              disabled={cepLoading}
-              accessibilityRole="button"
-              accessibilityLabel="Buscar endereço pelo CEP"
-            >
-              {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={16} color="#0D6A49" />}
-              <Text style={styles.cepLookupText}>{cepLoading ? "Consultando CEP..." : "Buscar endereço pelo CEP"}</Text>
-            </Pressable>
+            <Field
+              icon="navigate-outline"
+              label="CEP (opcional)"
+              value={form.cep}
+              onChangeText={(value) => update("cep")(formatCep(value))}
+              placeholder="00000-000"
+              keyboardType="numeric"
+              maxLength={9}
+              styles={styles}
+              rightAction={(
+                <Pressable
+                  style={({ pressed }) => [styles.cepLookupButton, pressed && { opacity: 0.82 }]}
+                  onPress={searchCep}
+                  disabled={cepLoading}
+                  accessibilityRole="button"
+                  accessibilityLabel="Buscar endereço pelo CEP"
+                  accessibilityHint="Consulta o endereço informado"
+                >
+                  {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={19} color="#0D6A49" />}
+                </Pressable>
+              )}
+            />
             {cepError ? <Text style={styles.cepError}>{cepError} Você ainda pode preencher os campos manualmente.</Text> : null}
           </View>
           <Field icon="map-outline" label="Endereço (opcional)" value={form.address} onChangeText={update("address")} placeholder="Rua, número e bairro" styles={styles} />
