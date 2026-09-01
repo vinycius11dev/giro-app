@@ -33,6 +33,7 @@
 | CT-29 | Ordenar produtos       | Em Produtos, selecionar Nome, Quantidade ou Categoria | Lista é reorganizada conforme o critério escolhido. |
 | CT-30 | Ativar acessibilidade  | Em Conta, ativar Modo escuro ou Texto maior | Tema e tipografia são ajustados imediatamente e permanecem salvos. |
 | CT-31 | Desfazer ação          | Registrar oferta, doação, descarte ou exclusão e tocar em Desfazer | Item retorna ao estoque e o histórico é revertido. |
+| CT-32 | Explorar apresentação  | No login, navegar por Visão, Como funciona, Negócio e CP4 · CP5 · CP6 | Seções, imagens, métricas de impacto e comparação são exibidas com transições suaves. |
 
 ## Evidências para a entrega
 

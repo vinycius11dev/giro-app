@@ -40,6 +40,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles 
   const scrollRef = useRef(null);
   const positions = useRef({});
   const entrance = useRef(new Animated.Value(0)).current;
+  const scrollY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(entrance, {
@@ -101,10 +102,15 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles 
         </Pressable>
       </View>
 
-      <ScrollView
+      <Animated.ScrollView
         ref={scrollRef}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.showcaseContent}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false },
+        )}
+        scrollEventThrottle={16}
       >
         <Animated.View style={contentStyle}>
           <ScrollView
@@ -154,13 +160,35 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles 
                 </Pressable>
                 <Text style={styles.showcaseHeroHint}>React Native · Expo · Offline</Text>
               </View>
-              <View style={styles.showcaseHeroMark}>
+              <Animated.View
+                style={[
+                  styles.showcaseHeroMark,
+                  {
+                    transform: [
+                      {
+                        translateY: scrollY.interpolate({
+                          inputRange: [0, 340],
+                          outputRange: [0, 46],
+                          extrapolate: "clamp",
+                        }),
+                      },
+                      {
+                        rotate: scrollY.interpolate({
+                          inputRange: [0, 340],
+                          outputRange: ["0deg", "8deg"],
+                          extrapolate: "clamp",
+                        }),
+                      },
+                    ],
+                  },
+                ]}
+              >
                 <Image
                   source={require("../../assets/giro-logo.png")}
                   style={styles.showcaseHeroLogo}
                   resizeMode="contain"
                 />
-              </View>
+              </Animated.View>
             </LinearGradient>
           </View>
 
@@ -227,6 +255,79 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles 
             <View style={styles.showcaseProductStrip}>
               <Image source={productImages.Laticínios} style={styles.showcaseStripPhoto} resizeMode="cover" />
               <Image source={productImages.Mercearia} style={styles.showcaseStripPhoto} resizeMode="cover" />
+            </View>
+          </View>
+
+          <View style={styles.showcaseSection}>
+            <SectionTitle
+              eyebrow="IMPACTO MEDIDO"
+              title="Pequenas decisões, resultados que aparecem."
+              text="O Giro conecta a rotina do estoque a dois objetivos de desenvolvimento sustentável."
+              styles={styles}
+            />
+            <View style={styles.showcaseMetricGrid}>
+              {[
+                ["ODS 12", "Consumo responsável", "Menos descarte e mais aproveitamento."],
+                ["ODS 2", "Fome zero", "Doações organizadas para quem precisa."],
+              ].map(([tag, title, text], index) => (
+                <Animated.View
+                  key={tag}
+                  style={[
+                    styles.showcaseMetricCard,
+                    { transform: [{ scale: entrance.interpolate({ inputRange: [0, 1], outputRange: [0.94 + index * 0.01, 1] }) }] },
+                  ]}
+                >
+                  <View style={styles.showcaseMetricTag}><Text style={styles.showcaseMetricTagText}>{tag}</Text></View>
+                  <Text style={styles.showcaseMetricTitle}>{title}</Text>
+                  <Text style={styles.showcaseMetricText}>{text}</Text>
+                </Animated.View>
+              ))}
+            </View>
+            <View style={styles.showcaseNumbersCard}>
+              <View><Text style={styles.showcaseNumberValue}>+32%</Text><Text style={styles.showcaseNumberLabel}>potencial de aproveitamento</Text></View>
+              <View style={styles.showcaseNumberDivider} />
+              <View><Text style={styles.showcaseNumberValue}>4 passos</Text><Text style={styles.showcaseNumberLabel}>do alerta à ação</Text></View>
+            </View>
+          </View>
+
+          <View style={styles.showcaseSection}>
+            <SectionTitle
+              eyebrow="POR QUE O GIRO"
+              title="Mais simples que uma planilha. Mais útil que um alerta solto."
+              text="A proposta foi desenhada para caber na rotina de quem cuida do estoque."
+              styles={styles}
+            />
+            <View style={styles.showcaseCompareCard}>
+              <View style={styles.showcaseCompareHeader}><Text style={styles.showcaseCompareHeaderText}>O que muda</Text><Text style={styles.showcaseCompareHeaderText}>Giro</Text></View>
+              {[
+                ["Prioriza o que vence primeiro", true],
+                ["Sugere uma ação prática", true],
+                ["Registra o impacto gerado", true],
+                ["Funciona na rotina do celular", true],
+              ].map(([label, enabled]) => (
+                <View key={label} style={styles.showcaseCompareRow}>
+                  <Text style={styles.showcaseCompareLabel}>{label}</Text>
+                  <View style={styles.showcaseCompareCheck}><Ionicons name={enabled ? "checkmark" : "close"} size={14} color="#0D6A49" /></View>
+                </View>
+              ))}
+            </View>
+          </View>
+
+          <View style={styles.showcaseGallery}>
+            <View style={styles.showcaseGalleryCopy}>
+              <Text style={styles.showcaseEyebrow}>FEITO PARA A ROTINA</Text>
+              <Text style={styles.showcaseGalleryTitle}>Produtos reais, decisões mais rápidas.</Text>
+              <Text style={styles.showcaseSectionText}>A interface usa imagens do catálogo para deixar cada decisão mais visual e fácil de acompanhar.</Text>
+            </View>
+            <View style={styles.showcaseGalleryGrid}>
+              {[productImages.Padaria, productImages.Laticínios, productImages.Hortifruti, productImages.Mercearia].map((image, index) => (
+                <Animated.Image
+                  key={index}
+                  source={image}
+                  style={[styles.showcaseGalleryPhoto, { transform: [{ scale: entrance.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }) }] }]}
+                  resizeMode="cover"
+                />
+              ))}
             </View>
           </View>
 
@@ -326,7 +427,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles 
           </View>
           <Text style={styles.showcaseFooter}>Giro · Menos desperdício, mais resultado.</Text>
         </Animated.View>
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   );
 }

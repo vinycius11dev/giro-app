@@ -39,6 +39,7 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 - Login, cadastro de conta e logout com sessão local persistente.
 - Avatar e saudação sincronizados com o nome da conta ativa, inclusive após recarregar o app.
 - Apresentação institucional interativa acessível pelo login, com navegação por seções, imagens e modelo de negócio.
+- Apresentação com seção de ODS, métricas de impacto, comparação com planilhas e galeria visual de produtos.
 - Cálculo real da taxa de aproveitamento com base no histórico.
 - Fotos realistas locais dos produtos, com fallback para emoji em categorias sem imagem.
 - Tela de alertas com prioridades do estoque.
