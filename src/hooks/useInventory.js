@@ -60,8 +60,10 @@ export default function useInventory() {
       ).length,
       ok: data.products.filter((item) => getProductStatus(item.expiry) === "ok")
         .length,
+      total: data.products.length,
+      rescued: data.history.filter((item) => item.action !== "Item descartado").length,
     }),
-    [data.products],
+    [data.history, data.products],
   );
   const rescued = data.history.filter(
     (item) => item.action !== "Item descartado",

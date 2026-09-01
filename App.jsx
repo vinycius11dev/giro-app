@@ -4,6 +4,7 @@ import { Alert, SafeAreaView, Text, View } from "react-native";
 import BottomTabs from "./src/components/BottomTabs";
 import useAuth from "./src/hooks/useAuth";
 import useInventory from "./src/hooks/useInventory";
+import AboutModal from "./src/modals/AboutModal";
 import BusinessProfileModal from "./src/modals/BusinessProfileModal";
 import HelpModal from "./src/modals/HelpModal";
 import ProductDetailModal from "./src/modals/ProductDetailModal";
@@ -18,7 +19,10 @@ import ProductsScreen from "./src/screens/ProductsScreen";
 import ProjectShowcaseScreen from "./src/screens/ProjectShowcaseScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import LoginScreen from "./src/screens/LoginScreen";
+import OnboardingScreen from "./src/screens/OnboardingScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
+import { loadOnboardingSeen, saveOnboardingSeen } from "./src/services/storage";
+import { syncExpiryNotifications } from "./src/services/notifications";
 import styles from "./src/styles/appStyles";
 
 export default function App() {
@@ -31,6 +35,12 @@ export default function App() {
   const [productFormVisible, setProductFormVisible] = useState(false);
   const [profileVisible, setProfileVisible] = useState(false);
   const [helpVisible, setHelpVisible] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+  const [onboardingSeen, setOnboardingSeen] = useState(null);
+
+  useEffect(() => {
+    loadOnboardingSeen().then(setOnboardingSeen).catch(() => setOnboardingSeen(true));
+  }, []);
 
   useEffect(() => {
     if (inventory.storageError)
@@ -71,6 +81,16 @@ export default function App() {
     if (inventory.ready && auth.session) applyAccountProfile(auth.session);
   }, [inventory.ready, auth.session]);
 
+  useEffect(() => {
+    if (!inventory.ready || !auth.session) return;
+    syncExpiryNotifications(inventory.products, inventory.alertsEnabled);
+  }, [inventory.ready, auth.session, inventory.products, inventory.alertsEnabled]);
+
+  async function finishOnboarding() {
+    setOnboardingSeen(true);
+    await saveOnboardingSeen();
+  }
+
   async function handleLogin(email, password) {
     const result = await auth.login(email, password);
     if (result.ok) applyAccountProfile(result.account);
@@ -93,7 +113,7 @@ export default function App() {
     setActiveTab("home");
   }
 
-  if (!inventory.ready || !auth.ready) {
+  if (!inventory.ready || !auth.ready || onboardingSeen === null) {
     return (
       <SafeAreaView
         style={[
@@ -105,6 +125,10 @@ export default function App() {
         <Text style={styles.subtitle}>Preparando seu estoque...</Text>
       </SafeAreaView>
     );
+  }
+
+  if (!onboardingSeen) {
+    return <OnboardingScreen onFinish={finishOnboarding} styles={styles} />;
   }
 
   if (!auth.session) {
@@ -153,6 +177,7 @@ export default function App() {
         {activeTab === "home" && (
           <HomeScreen
             stats={inventory.stats}
+            history={inventory.history}
             products={inventory.sortedProducts}
             profile={inventory.profile}
             openDetail={setSelectedProduct}
@@ -183,6 +208,8 @@ export default function App() {
             onEditProfile={() => setProfileVisible(true)}
             onToggleAlerts={inventory.toggleAlerts}
             onHelp={() => setHelpVisible(true)}
+            onAbout={() => setAboutVisible(true)}
+            onRestartOnboarding={() => setOnboardingSeen(false)}
             onReset={confirmReset}
             onLogout={handleLogout}
             styles={styles}
@@ -256,6 +283,11 @@ export default function App() {
       <HelpModal
         visible={helpVisible}
         close={() => setHelpVisible(false)}
+        styles={styles}
+      />
+      <AboutModal
+        visible={aboutVisible}
+        close={() => setAboutVisible(false)}
         styles={styles}
       />
     </SafeAreaView>

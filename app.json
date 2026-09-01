@@ -21,7 +21,8 @@
       "favicon": "./assets/giro-app-icon.png"
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-notifications"
     ]
   }
 }

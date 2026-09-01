@@ -18,7 +18,7 @@
 - [x] Manual de uso.
 - [x] Decisões técnicas.
 - [x] Roteiro de testes e evidências esperadas.
-- [x] Integrantes, RMs e papéis sugeridos preenchidos no README.
+- [x] Integrantes, RMs e divisão de responsabilidades preenchidos no README.
 - [x] Prints das telas principais, login, cadastro e apresentação salvos em `docs/evidencias/` e vinculados no README.
 
 ## APK instalável

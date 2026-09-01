@@ -47,3 +47,9 @@ export function defaultExpiryDate() {
   date.setDate(date.getDate() + 3);
   return date.toISOString().slice(0, 10);
 }
+
+export function dateAfterDays(days) {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return date.toISOString().slice(0, 10);
+}

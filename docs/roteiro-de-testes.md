@@ -26,6 +26,10 @@
 | CT-22 | Sair da conta          | Em Conta, tocar em Sair da conta       | Tela de login aparece novamente.                      |
 | CT-23 | Sincronizar perfil     | Criar conta com outro nome e recarregar | Saudação e avatar exibem as iniciais da conta ativa.  |
 | CT-24 | Abrir apresentação     | No login, tocar em Conheça a ideia do projeto | Apresentação abre com navegação por seções e CTA de demonstração. |
+| CT-25 | Navegar no onboarding  | Na primeira abertura, avançar pelos cards ou tocar em Pular | Introdução apresenta a proposta e o painel fica disponível. |
+| CT-26 | Abrir sobre o projeto  | Em Conta, tocar em Sobre o projeto | Modal apresenta tecnologias, ODS e proposta de valor. |
+| CT-27 | Usar atalho de validade | No cadastro, tocar em 1, 3, 7 ou 30 dias | Campo de validade recebe a data correspondente. |
+| CT-28 | Agendar alertas locais | Manter Alertas de validade habilitado no Android | Lembrete local é programado para produtos próximos do vencimento. |
 
 ## Evidências para a entrega
 
@@ -38,3 +42,4 @@
 7. Print das telas Alertas, Oportunidades, Relatórios e Impacto.
 8. Print das telas de Login e Cadastro.
 9. Print da apresentação institucional com a proposta e o modelo de negócio.
+10. Print do onboarding e da tela Sobre o projeto.

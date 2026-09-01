@@ -19,6 +19,8 @@ export default function ProfileScreen({
   onEditProfile,
   onToggleAlerts,
   onHelp,
+  onAbout,
+  onRestartOnboarding,
   onReset,
   onLogout,
   styles,
@@ -64,6 +66,18 @@ export default function ProfileScreen({
         icon="help-circle-outline"
         text="Central de ajuda"
         onPress={onHelp}
+        styles={styles}
+      />
+      <SettingRow
+        icon="information-circle-outline"
+        text="Sobre o projeto"
+        onPress={onAbout}
+        styles={styles}
+      />
+      <SettingRow
+        icon="sparkles-outline"
+        text="Ver introdução novamente"
+        onPress={onRestartOnboarding}
         styles={styles}
       />
       <SettingRow

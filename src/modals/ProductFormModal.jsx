@@ -12,7 +12,7 @@ import {
 import FormField from "../components/FormField";
 import ModalHeader from "../components/ModalHeader";
 import { categoryIcons } from "../data/initialData";
-import { defaultExpiryDate, isValidISODate } from "../utils/productDates";
+import { dateAfterDays, defaultExpiryDate, isValidISODate } from "../utils/productDates";
 
 const blankForm = () => ({
   name: "",
@@ -133,6 +133,23 @@ export default function ProductFormModal({
             autoCapitalize="none"
             styles={styles}
           />
+          <View style={styles.datePresets}>
+            <Text style={styles.datePresetLabel}>Atalhos:</Text>
+            {[
+              [1, "Amanhã"],
+              [3, "3 dias"],
+              [7, "7 dias"],
+              [30, "30 dias"],
+            ].map(([days, label]) => (
+              <Pressable
+                key={label}
+                style={styles.datePreset}
+                onPress={() => setForm({ ...form, expiry: dateAfterDays(days) })}
+              >
+                <Text style={styles.datePresetText}>{label}</Text>
+              </Pressable>
+            ))}
+          </View>
           <Text style={styles.hint}>
             Use o formato AAAA-MM-DD. Exemplo: {defaultExpiryDate()}.
           </Text>

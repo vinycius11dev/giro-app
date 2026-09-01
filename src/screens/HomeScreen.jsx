@@ -42,6 +42,7 @@ function EmptyState({ text, styles }) {
 
 export default function HomeScreen({
   stats,
+  history,
   products,
   profile,
   openDetail,
@@ -123,6 +124,25 @@ export default function HomeScreen({
         <Metric value={stats.soon} text="Atenção" tone="soon" styles={styles} />
         <Metric value={stats.ok} text="Em dia" tone="ok" styles={styles} />
       </View>
+      <Pressable style={styles.impactSummary} onPress={() => openScreen("impact")}>
+        <View style={styles.impactSummaryHead}>
+          <View>
+            <Text style={styles.impactSummaryEyebrow}>IMPACTO DO GIRO</Text>
+            <Text style={styles.impactSummaryTitle}>Cada ação conta</Text>
+          </View>
+          <View style={styles.impactSummaryBadge}>
+            <Text style={styles.impactSummaryBadgeText}>{inventorySafeRate(history)}%</Text>
+          </View>
+        </View>
+        <Text style={styles.impactSummaryText}>
+          {history.length
+            ? `${history.length} ${history.length === 1 ? "ação registrada" : "ações registradas"} no histórico.`
+            : "Registre sua primeira oferta ou doação."}
+        </Text>
+        <View style={styles.impactProgressTrack}>
+          <View style={[styles.impactProgressFill, { width: `${inventorySafeRate(history)}%` }]} />
+        </View>
+      </Pressable>
       <Header title="Gestão inteligente" styles={styles} />
       <View style={styles.quickGrid}>
         <QuickActionCard
@@ -181,4 +201,10 @@ export default function HomeScreen({
       </Pressable>
     </ScrollView>
   );
+}
+
+function inventorySafeRate(history) {
+  if (!history.length) return 0;
+  const rescued = history.filter((item) => item.action !== "Item descartado").length;
+  return Math.round((rescued / history.length) * 100);
 }
