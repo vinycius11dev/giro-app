@@ -38,6 +38,7 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 - Feedback animado com desfazer para ações de estoque.
 - Login, cadastro de conta e logout com sessão local persistente.
 - Avatar e saudação sincronizados com o nome da conta ativa, inclusive após recarregar o app.
+- Consulta de CEP pela API pública ViaCEP no cadastro e na edição do estabelecimento, com máscara, preenchimento automático e fallback manual.
 - Apresentação institucional interativa acessível pelo login, com navegação por seções, imagens e modelo de negócio.
 - Apresentação com seção de ODS, métricas de impacto, comparação com planilhas e galeria visual de produtos.
 - Cálculo real da taxa de aproveitamento com base no histórico.
@@ -70,6 +71,7 @@ Ao contrário de uma planilha de validade, o Giro orienta um destino para cada i
 - expo-notifications para lembretes locais de validade no Android.
 - expo-linear-gradient para o destaque visual do painel.
 - @expo/vector-icons para ícones consistentes.
+- ViaCEP para consulta de endereço a partir do CEP, sem armazenar dados fora do dispositivo.
 - Hook `useInventory` como camada central das regras de negócio.
 - Serviço de armazenamento isolado para facilitar manutenção e evolução.
 - Navegação por estado local e abas customizadas para manter o MVP simples e leve.
@@ -117,6 +119,7 @@ app-mobile/
 │   ├── hooks/useAuth.js            # Sessão e cadastro local
 │   ├── services/storage.js         # Persistência com AsyncStorage
 │   ├── services/notifications.js    # Lembretes locais de validade
+│   ├── services/cep.js              # Consulta e máscara de CEP (ViaCEP)
 │   ├── data/initialData.js         # Dados mockados iniciais
 │   ├── styles/appStyles.js         # Identidade visual compartilhada
 │   └── utils/productDates.js       # Datas, validade e prioridade
@@ -139,7 +142,7 @@ No Expo, pressione `w` para navegador ou `a` para emulador Android. Também é p
 2. Abra o aplicativo e use **Acessar demonstração** ou toque em **Criar conta**.
 3. Na tela de login, toque em **Conheça a ideia do projeto** para abrir a apresentação interativa.
 4. Use a navegação **Visão**, **Como funciona**, **Negócio** e **CP4 · CP5 · CP6** para explorar a proposta.
-5. Se criar uma conta, informe nome, e-mail e senha; estabelecimento e cidade são opcionais.
+5. Se criar uma conta, informe nome, e-mail e senha. O CEP é opcional: ao tocar em **Buscar endereço pelo CEP**, o Giro preenche endereço e cidade/estado automaticamente; se estiver sem internet, os campos continuam editáveis para preenchimento manual.
 6. No painel, toque em **Adicionar produto** e informe nome, categoria, quantidade e validade (`AAAA-MM-DD`). Os atalhos de 1, 3, 7 e 30 dias agilizam o preenchimento.
 7. Em **Produtos**, busque ou filtre por urgência e abra um item para ver a recomendação.
 8. Registre uma oferta, doação ou descarte. A ação fica guardada no histórico.
@@ -191,6 +194,7 @@ O último comando fornece, na conta Expo conectada, um link para baixar o APK in
 
 - [x] Aplicativo funcional em React Native/Expo com telas, modais e persistência local.
 - [x] Login, cadastro, logout e sincronização do avatar com sessão local testados.
+- [x] Consulta de CEP integrada no cadastro e no perfil, com tratamento de CEP inválido e fallback manual.
 - [x] Identidade visual, logo, ícone e favicon configurados.
 - [x] Roteiro de testes e 18 prints de evidência adicionados ao repositório.
 - [x] Build web validado com `npx expo export --platform web`.

@@ -16,6 +16,7 @@
 - [x] Ordenação por validade, nome, quantidade e categoria.
 - [x] Modo escuro, texto maior e feedback com opção de desfazer.
 - [x] Lembretes locais de validade configurados para Android.
+- [x] Consulta de CEP com preenchimento automático de endereço no cadastro e no perfil.
 
 ## Documentação
 

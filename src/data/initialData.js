@@ -87,4 +87,6 @@ export const defaultProfile = {
   name: "Marina Costa",
   business: "Café Raiz",
   city: "São Paulo, SP",
+  cep: "",
+  address: "",
 };

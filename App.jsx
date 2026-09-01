@@ -79,9 +79,12 @@ export default function App() {
   function applyAccountProfile(account) {
     if (!account) return;
     inventory.updateProfile({
+      ...inventory.profile,
       name: account.name,
       business: account.business || "Meu estabelecimento",
       city: account.city || "Minha cidade",
+      cep: account.cep || inventory.profile.cep || "",
+      address: account.address || inventory.profile.address || "",
     });
   }
 

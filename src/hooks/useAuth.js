@@ -60,6 +60,8 @@ export default function useAuth() {
       password: form.password,
       business: form.business.trim() || "Meu estabelecimento",
       city: form.city.trim() || "Minha cidade",
+      cep: form.cep || "",
+      address: form.address || "",
     };
     await persist({ account, session: withoutPassword(account) });
     return withoutPassword(account);

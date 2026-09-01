@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
+  ActivityIndicator,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -10,8 +11,9 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { formatCep, lookupCep } from "../services/cep";
 
-function Field({ icon, label, value, onChangeText, placeholder, secure, styles }) {
+function Field({ icon, label, value, onChangeText, placeholder, secure, styles, ...inputProps }) {
   return (
     <View>
       <Text style={styles.authLabel}>{label}</Text>
@@ -25,6 +27,7 @@ function Field({ icon, label, value, onChangeText, placeholder, secure, styles }
           secureTextEntry={secure}
           autoCapitalize={secure ? "none" : "words"}
           style={styles.authInput}
+          {...inputProps}
         />
       </View>
     </View>
@@ -37,14 +40,42 @@ export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
     email: "",
     password: "",
     business: "",
+    cep: "",
+    address: "",
     city: "",
   });
   const [error, setError] = useState("");
+  const [cepError, setCepError] = useState("");
+  const [cepLoading, setCepLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const update = (key) => (value) => {
     setForm((current) => ({ ...current, [key]: value }));
     setError("");
+    if (key === "cep") setCepError("");
   };
+
+  async function searchCep() {
+    setCepError("");
+    if (form.cep.replace(/\D/g, "").length !== 8) {
+      setCepError("Digite um CEP com 8 números.");
+      return;
+    }
+    setCepLoading(true);
+    try {
+      const data = await lookupCep(form.cep);
+      const address = [data.logradouro, data.bairro].filter(Boolean).join(", ");
+      setForm((current) => ({
+        ...current,
+        cep: formatCep(form.cep),
+        address,
+        city: [data.localidade, data.uf].filter(Boolean).join(", "),
+      }));
+    } catch (lookupError) {
+      setCepError(lookupError.message || "Não foi possível consultar o CEP.");
+    } finally {
+      setCepLoading(false);
+    }
+  }
 
   async function submit() {
     if (!form.name.trim() || !form.email.trim() || !form.password) {
@@ -96,6 +127,21 @@ export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
           <Field icon="person-outline" label="Seu nome" value={form.name} onChangeText={update("name")} placeholder="Ex.: Marina Costa" styles={styles} />
           <Field icon="mail-outline" label="E-mail" value={form.email} onChangeText={update("email")} placeholder="voce@empresa.com" styles={styles} />
           <Field icon="lock-closed-outline" label="Senha" value={form.password} onChangeText={update("password")} placeholder="Mínimo de 6 caracteres" secure styles={styles} />
+          <View>
+            <Field icon="navigate-outline" label="CEP (opcional)" value={form.cep} onChangeText={(value) => update("cep")(formatCep(value))} placeholder="00000-000" keyboardType="numeric" maxLength={9} styles={styles} />
+            <Pressable
+              style={({ pressed }) => [styles.cepLookupButton, pressed && { opacity: 0.82 }]}
+              onPress={searchCep}
+              disabled={cepLoading}
+              accessibilityRole="button"
+              accessibilityLabel="Buscar endereço pelo CEP"
+            >
+              {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={16} color="#0D6A49" />}
+              <Text style={styles.cepLookupText}>{cepLoading ? "Consultando CEP..." : "Buscar endereço pelo CEP"}</Text>
+            </Pressable>
+            {cepError ? <Text style={styles.cepError}>{cepError} Você ainda pode preencher os campos manualmente.</Text> : null}
+          </View>
+          <Field icon="map-outline" label="Endereço (opcional)" value={form.address} onChangeText={update("address")} placeholder="Rua, número e bairro" styles={styles} />
           <Field icon="business-outline" label="Estabelecimento (opcional)" value={form.business} onChangeText={update("business")} placeholder="Ex.: Café Raiz" styles={styles} />
           <Field icon="location-outline" label="Cidade (opcional)" value={form.city} onChangeText={update("city")} placeholder="Ex.: São Paulo, SP" styles={styles} />
           {error ? <Text style={styles.authError}>{error}</Text> : null}
