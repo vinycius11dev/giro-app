@@ -1,0 +1,37 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const STORAGE_KEY = "@giro:data:v2";
+const AUTH_STORAGE_KEY = "@giro:auth:v1";
+
+export async function loadAppData(fallback) {
+  const stored = await AsyncStorage.getItem(STORAGE_KEY);
+  if (!stored) return fallback;
+  const parsed = JSON.parse(stored);
+  return {
+    ...fallback,
+    ...parsed,
+    profile: { ...fallback.profile, ...parsed.profile },
+  };
+}
+
+export async function saveAppData(data) {
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+export async function loadAuthData() {
+  const stored = await AsyncStorage.getItem(AUTH_STORAGE_KEY);
+  if (!stored) return { account: null, session: null };
+  try {
+    const parsed = JSON.parse(stored);
+    return {
+      account: parsed.account || null,
+      session: parsed.session || null,
+    };
+  } catch {
+    return { account: null, session: null };
+  }
+}
+
+export async function saveAuthData(data) {
+  await AsyncStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(data));
+}

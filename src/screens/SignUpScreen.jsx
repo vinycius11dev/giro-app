@@ -1,0 +1,115 @@
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
+import {
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+
+function Field({ icon, label, value, onChangeText, placeholder, secure, styles }) {
+  return (
+    <View>
+      <Text style={styles.authLabel}>{label}</Text>
+      <View style={styles.authInputWrap}>
+        <Ionicons name={icon} size={18} color="#7A8980" />
+        <TextInput
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          placeholderTextColor="#A3ACA6"
+          secureTextEntry={secure}
+          autoCapitalize={secure ? "none" : "words"}
+          style={styles.authInput}
+        />
+      </View>
+    </View>
+  );
+}
+
+export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    business: "",
+    city: "",
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const update = (key) => (value) => {
+    setForm((current) => ({ ...current, [key]: value }));
+    setError("");
+  };
+
+  async function submit() {
+    if (!form.name.trim() || !form.email.trim() || !form.password) {
+      setError("Preencha nome, e-mail e senha para criar sua conta.");
+      return;
+    }
+    if (!form.email.includes("@")) {
+      setError("Digite um e-mail válido.");
+      return;
+    }
+    if (form.password.length < 6) {
+      setError("A senha precisa ter pelo menos 6 caracteres.");
+      return;
+    }
+    setLoading(true);
+    await onCreateAccount(form);
+    setLoading(false);
+  }
+
+  return (
+    <KeyboardAvoidingView
+      style={styles.authScreen}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <ScrollView
+        contentContainerStyle={styles.authContent}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <Pressable style={styles.authBack} onPress={onBack}>
+          <Ionicons name="arrow-back" size={20} color="#0D6A49" />
+          <Text style={styles.authBackText}>Voltar para entrar</Text>
+        </Pressable>
+        <View style={styles.authBrand}>
+          <Image
+            source={require("../../assets/giro-logo.png")}
+            style={styles.authLogo}
+            resizeMode="contain"
+            accessibilityLabel="Logo do Giro"
+          />
+          <Text style={styles.authBrandText}>giro</Text>
+        </View>
+        <Text style={styles.authEyebrow}>COMECE AGORA</Text>
+        <Text style={styles.authTitle}>Crie sua conta Giro.</Text>
+        <Text style={styles.authSubtitle}>
+          Organize o estoque do seu estabelecimento em poucos passos.
+        </Text>
+        <View style={styles.authForm}>
+          <Field icon="person-outline" label="Seu nome" value={form.name} onChangeText={update("name")} placeholder="Ex.: Marina Costa" styles={styles} />
+          <Field icon="mail-outline" label="E-mail" value={form.email} onChangeText={update("email")} placeholder="voce@empresa.com" styles={styles} />
+          <Field icon="lock-closed-outline" label="Senha" value={form.password} onChangeText={update("password")} placeholder="Mínimo de 6 caracteres" secure styles={styles} />
+          <Field icon="business-outline" label="Estabelecimento (opcional)" value={form.business} onChangeText={update("business")} placeholder="Ex.: Café Raiz" styles={styles} />
+          <Field icon="location-outline" label="Cidade (opcional)" value={form.city} onChangeText={update("city")} placeholder="Ex.: São Paulo, SP" styles={styles} />
+          {error ? <Text style={styles.authError}>{error}</Text> : null}
+          <Pressable
+            style={({ pressed }) => [styles.authButton, pressed && { opacity: 0.86 }]}
+            onPress={submit}
+            disabled={loading}
+          >
+            <Text style={styles.authButtonText}>{loading ? "Criando..." : "Criar minha conta"}</Text>
+            <Ionicons name="arrow-forward" size={18} color="#fff" />
+          </Pressable>
+        </View>
+        <Text style={styles.authNote}>Seus dados ficam salvos localmente neste dispositivo.</Text>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+}
