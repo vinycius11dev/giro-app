@@ -30,6 +30,9 @@
 | CT-26 | Abrir sobre o projeto  | Em Conta, tocar em Sobre o projeto | Modal apresenta tecnologias, ODS e proposta de valor. |
 | CT-27 | Usar atalho de validade | No cadastro, tocar em 1, 3, 7 ou 30 dias | Campo de validade recebe a data correspondente. |
 | CT-28 | Agendar alertas locais | Manter Alertas de validade habilitado no Android | Lembrete local é programado para produtos próximos do vencimento. |
+| CT-29 | Ordenar produtos       | Em Produtos, selecionar Nome, Quantidade ou Categoria | Lista é reorganizada conforme o critério escolhido. |
+| CT-30 | Ativar acessibilidade  | Em Conta, ativar Modo escuro ou Texto maior | Tema e tipografia são ajustados imediatamente e permanecem salvos. |
+| CT-31 | Desfazer ação          | Registrar oferta, doação, descarte ou exclusão e tocar em Desfazer | Item retorna ao estoque e o histórico é revertido. |
 
 ## Evidências para a entrega
 

@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { useEffect, useState } from "react";
 import {
   Alert,
   Modal,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -29,6 +31,7 @@ export default function ProductFormModal({
   styles,
 }) {
   const [form, setForm] = useState(blankForm);
+  const [calendarVisible, setCalendarVisible] = useState(false);
 
   useEffect(() => {
     if (!visible) return;
@@ -42,7 +45,22 @@ export default function ProductFormModal({
           }
         : blankForm(),
     );
+    setCalendarVisible(false);
   }, [product, visible]);
+
+  function openCalendar() {
+    if (Platform.OS !== "web") {
+      setCalendarVisible(true);
+      return;
+    }
+    const input = document.createElement("input");
+    input.type = "date";
+    input.value = form.expiry;
+    input.onchange = (event) => {
+      if (event.target.value) setForm({ ...form, expiry: event.target.value });
+    };
+    input.click();
+  }
 
   function submit() {
     const normalizedQuantity = form.quantity.replace(",", ".");
@@ -133,6 +151,31 @@ export default function ProductFormModal({
             autoCapitalize="none"
             styles={styles}
           />
+          <Pressable
+            style={styles.datePickerButton}
+            onPress={openCalendar}
+            accessibilityRole="button"
+            accessibilityLabel="Abrir calendário para escolher a validade"
+          >
+            <Ionicons name="calendar-outline" size={17} color="#0D6A49" />
+            <Text style={styles.datePickerButtonText}>Escolher no calendário</Text>
+          </Pressable>
+          {calendarVisible && Platform.OS !== "web" && (
+            <DateTimePicker
+              value={isValidISODate(form.expiry) ? new Date(`${form.expiry}T12:00:00`) : new Date()}
+              mode="date"
+              display="calendar"
+              onChange={(event, value) => {
+                if (Platform.OS === "android") setCalendarVisible(false);
+                if (value) {
+                  const year = value.getFullYear();
+                  const month = String(value.getMonth() + 1).padStart(2, "0");
+                  const day = String(value.getDate()).padStart(2, "0");
+                  setForm({ ...form, expiry: `${year}-${month}-${day}` });
+                }
+              }}
+            />
+          )}
           <View style={styles.datePresets}>
             <Text style={styles.datePresetLabel}>Atalhos:</Text>
             {[

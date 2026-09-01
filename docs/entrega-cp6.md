@@ -11,6 +11,11 @@
 - [x] Identidade visual consistente com o conceito do CP4.
 - [x] Login, cadastro e logout com sessão local.
 - [x] Apresentação institucional interativa acessível pelo login.
+- [x] Onboarding inicial com animações e opção de rever a introdução.
+- [x] Seletor de validade com calendário nativo e atalhos rápidos.
+- [x] Ordenação por validade, nome, quantidade e categoria.
+- [x] Modo escuro, texto maior e feedback com opção de desfazer.
+- [x] Lembretes locais de validade configurados para Android.
 
 ## Documentação
 

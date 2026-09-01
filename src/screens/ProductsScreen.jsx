@@ -12,6 +12,12 @@ const filters = [
   ["soon", "Atenção"],
   ["ok", "Em dia"],
 ];
+const sortOptions = [
+  ["expiry", "Validade"],
+  ["name", "Nome"],
+  ["quantity", "Quantidade"],
+  ["category", "Categoria"],
+];
 
 export default function ProductsScreen({
   products,
@@ -21,9 +27,10 @@ export default function ProductsScreen({
 }) {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("expiry");
   const visibleProducts = useMemo(
-    () =>
-      products.filter((item) => {
+    () => {
+      const filtered = products.filter((item) => {
         const matchesFilter =
           filter === "all" || getProductStatus(item.expiry) === filter;
         const term = search.trim().toLocaleLowerCase("pt-BR");
@@ -33,8 +40,16 @@ export default function ProductsScreen({
             .toLocaleLowerCase("pt-BR")
             .includes(term);
         return matchesFilter && matchesSearch;
-      }),
-    [filter, products, search],
+      });
+      return filtered.sort((a, b) => {
+        if (sortBy === "quantity") return Number(b.quantity) - Number(a.quantity);
+        if (sortBy === "name" || sortBy === "category") {
+          return String(a[sortBy]).localeCompare(String(b[sortBy]), "pt-BR");
+        }
+        return new Date(`${a.expiry}T00:00:00`) - new Date(`${b.expiry}T00:00:00`);
+      });
+    },
+    [filter, products, search, sortBy],
   );
   return (
     <View style={styles.screen}>
@@ -67,6 +82,16 @@ export default function ProductsScreen({
           </Pressable>
         ))}
       </ScrollView>
+      <View style={styles.sortHeader}>
+        <Text style={styles.sortLabel}>Ordenar por</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.sortOptions}>
+          {sortOptions.map(([id, label]) => (
+            <Pressable key={id} style={[styles.sortChip, sortBy === id && styles.sortChipActive]} onPress={() => setSortBy(id)}>
+              <Text style={[styles.sortChipText, sortBy === id && styles.sortChipTextActive]}>{label}</Text>
+            </Pressable>
+          ))}
+        </ScrollView>
+      </View>
       <Text style={[styles.subtitle, { marginBottom: 10 }]}>
         {visibleProducts.length}{" "}
         {visibleProducts.length === 1

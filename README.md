@@ -33,6 +33,9 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 - Onboarding animado na primeira abertura e acesso para rever a introdução.
 - Atalhos de validade no cadastro e resumo visual de impacto no painel.
 - Tela “Sobre o projeto” com tecnologias, ODS e proposta de valor.
+- Modo escuro e opção de texto maior para melhorar acessibilidade.
+- Ordenação do estoque por validade, nome, quantidade ou categoria.
+- Feedback animado com desfazer para ações de estoque.
 - Login, cadastro de conta e logout com sessão local persistente.
 - Avatar e saudação sincronizados com o nome da conta ativa, inclusive após recarregar o app.
 - Apresentação institucional interativa acessível pelo login, com navegação por seções, imagens e modelo de negócio.

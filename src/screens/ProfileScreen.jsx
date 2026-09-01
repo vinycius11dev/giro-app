@@ -15,9 +15,13 @@ export default function ProfileScreen({
   history,
   profile,
   alertsEnabled,
+  darkMode,
+  largeText,
   impactRate,
   onEditProfile,
   onToggleAlerts,
+  onToggleDarkMode,
+  onToggleLargeText,
   onHelp,
   onAbout,
   onRestartOnboarding,
@@ -60,6 +64,20 @@ export default function ProfileScreen({
         text="Alertas de validade"
         switchValue={alertsEnabled}
         onToggle={onToggleAlerts}
+        styles={styles}
+      />
+      <SettingRow
+        icon="moon-outline"
+        text="Modo escuro"
+        switchValue={darkMode}
+        onToggle={onToggleDarkMode}
+        styles={styles}
+      />
+      <SettingRow
+        icon="text-outline"
+        text="Texto maior"
+        switchValue={largeText}
+        onToggle={onToggleLargeText}
         styles={styles}
       />
       <SettingRow

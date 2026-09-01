@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Alert, SafeAreaView, Text, View } from "react-native";
 import BottomTabs from "./src/components/BottomTabs";
+import FeedbackOverlay from "./src/components/FeedbackOverlay";
+import LoadingScreen from "./src/components/LoadingScreen";
 import useAuth from "./src/hooks/useAuth";
 import useInventory from "./src/hooks/useInventory";
 import AboutModal from "./src/modals/AboutModal";
@@ -23,6 +25,7 @@ import OnboardingScreen from "./src/screens/OnboardingScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import { loadOnboardingSeen, saveOnboardingSeen } from "./src/services/storage";
 import { syncExpiryNotifications } from "./src/services/notifications";
+import buildThemeStyles from "./src/utils/themeStyles";
 import styles from "./src/styles/appStyles";
 
 export default function App() {
@@ -37,6 +40,11 @@ export default function App() {
   const [helpVisible, setHelpVisible] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
   const [onboardingSeen, setOnboardingSeen] = useState(null);
+  const [feedbackMutation, setFeedbackMutation] = useState(null);
+  const themedStyles = useMemo(
+    () => buildThemeStyles(styles, { darkMode: inventory.darkMode, largeText: inventory.largeText }),
+    [inventory.darkMode, inventory.largeText],
+  );
 
   useEffect(() => {
     loadOnboardingSeen().then(setOnboardingSeen).catch(() => setOnboardingSeen(true));
@@ -86,6 +94,16 @@ export default function App() {
     syncExpiryNotifications(inventory.products, inventory.alertsEnabled);
   }, [inventory.ready, auth.session, inventory.products, inventory.alertsEnabled]);
 
+  useEffect(() => {
+    if (!inventory.lastMutation) return undefined;
+    setFeedbackMutation(inventory.lastMutation);
+    const timeout = setTimeout(() => {
+      setFeedbackMutation(null);
+      inventory.clearLastMutation();
+    }, 4500);
+    return () => clearTimeout(timeout);
+  }, [inventory.lastMutation]);
+
   async function finishOnboarding() {
     setOnboardingSeen(true);
     await saveOnboardingSeen();
@@ -114,21 +132,11 @@ export default function App() {
   }
 
   if (!inventory.ready || !auth.ready || onboardingSeen === null) {
-    return (
-      <SafeAreaView
-        style={[
-          styles.safe,
-          { alignItems: "center", justifyContent: "center" },
-        ]}
-      >
-        <StatusBar style="dark" />
-        <Text style={styles.subtitle}>Preparando seu estoque...</Text>
-      </SafeAreaView>
-    );
+    return <LoadingScreen styles={themedStyles} />;
   }
 
   if (!onboardingSeen) {
-    return <OnboardingScreen onFinish={finishOnboarding} styles={styles} />;
+    return <OnboardingScreen onFinish={finishOnboarding} styles={themedStyles} />;
   }
 
   if (!auth.session) {
@@ -138,7 +146,7 @@ export default function App() {
           onBack={() => setAuthMode("login")}
           onLogin={() => setAuthMode("login")}
           onDemo={handleDemo}
-          styles={styles}
+          styles={themedStyles}
         />
       );
     }
@@ -147,7 +155,7 @@ export default function App() {
         <SignUpScreen
           onBack={() => setAuthMode("login")}
           onCreateAccount={handleCreateAccount}
-          styles={styles}
+          styles={themedStyles}
         />
       );
     }
@@ -157,7 +165,7 @@ export default function App() {
         onDemo={handleDemo}
         onSignUp={() => setAuthMode("signup")}
         onShowcase={() => setAuthMode("showcase")}
-        styles={styles}
+        styles={themedStyles}
       />
     );
   }
@@ -171,9 +179,9 @@ export default function App() {
   const goHome = () => setActiveTab("home");
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={themedStyles.safe}>
       <StatusBar style="dark" />
-      <View style={styles.app}>
+      <View style={themedStyles.app}>
         {activeTab === "home" && (
           <HomeScreen
             stats={inventory.stats}
@@ -184,7 +192,7 @@ export default function App() {
             goProducts={() => setActiveTab("products")}
             openForm={openProductForm}
             openScreen={setActiveTab}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
         {activeTab === "products" && (
@@ -192,11 +200,11 @@ export default function App() {
             products={inventory.sortedProducts}
             openDetail={setSelectedProduct}
             openForm={openProductForm}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
         {activeTab === "history" && (
-          <HistoryScreen history={inventory.history} styles={styles} />
+          <HistoryScreen history={inventory.history} styles={themedStyles} />
         )}
         {activeTab === "profile" && (
           <ProfileScreen
@@ -204,15 +212,19 @@ export default function App() {
             history={inventory.history}
             profile={inventory.profile}
             alertsEnabled={inventory.alertsEnabled}
+            darkMode={inventory.darkMode}
+            largeText={inventory.largeText}
             impactRate={inventory.impactRate}
             onEditProfile={() => setProfileVisible(true)}
             onToggleAlerts={inventory.toggleAlerts}
+            onToggleDarkMode={inventory.toggleDarkMode}
+            onToggleLargeText={inventory.toggleLargeText}
             onHelp={() => setHelpVisible(true)}
             onAbout={() => setAboutVisible(true)}
             onRestartOnboarding={() => setOnboardingSeen(false)}
             onReset={confirmReset}
             onLogout={handleLogout}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
         {activeTab === "alerts" && (
@@ -221,7 +233,7 @@ export default function App() {
             alertsEnabled={inventory.alertsEnabled}
             onBack={goHome}
             openDetail={setSelectedProduct}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
         {activeTab === "opportunities" && (
@@ -229,7 +241,7 @@ export default function App() {
             products={inventory.sortedProducts}
             onBack={goHome}
             openDetail={setSelectedProduct}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
         {activeTab === "insights" && (
@@ -238,7 +250,7 @@ export default function App() {
             history={inventory.history}
             impactRate={inventory.impactRate}
             onBack={goHome}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
         {activeTab === "impact" && (
@@ -246,7 +258,7 @@ export default function App() {
             history={inventory.history}
             impactRate={inventory.impactRate}
             onBack={goHome}
-            styles={styles}
+            styles={themedStyles}
           />
         )}
       </View>
@@ -254,7 +266,7 @@ export default function App() {
         <BottomTabs
           active={activeTab}
           setActive={setActiveTab}
-          styles={styles}
+          styles={themedStyles}
         />
       )}
 
@@ -263,7 +275,7 @@ export default function App() {
         product={formProduct}
         close={() => setProductFormVisible(false)}
         onSave={inventory.saveProduct}
-        styles={styles}
+        styles={themedStyles}
       />
       <ProductDetailModal
         product={selectedProduct}
@@ -271,24 +283,32 @@ export default function App() {
         edit={() => openProductForm(selectedProduct)}
         remove={inventory.removeProduct}
         registerAction={inventory.registerAction}
-        styles={styles}
+        styles={themedStyles}
       />
       <BusinessProfileModal
         visible={profileVisible}
         profile={inventory.profile}
         close={() => setProfileVisible(false)}
         onSave={inventory.updateProfile}
-        styles={styles}
+        styles={themedStyles}
       />
       <HelpModal
         visible={helpVisible}
         close={() => setHelpVisible(false)}
-        styles={styles}
+        styles={themedStyles}
       />
       <AboutModal
         visible={aboutVisible}
         close={() => setAboutVisible(false)}
-        styles={styles}
+        styles={themedStyles}
+      />
+      <FeedbackOverlay
+        mutation={feedbackMutation}
+        onUndo={() => {
+          inventory.undoLastMutation();
+          setFeedbackMutation(null);
+        }}
+        styles={themedStyles}
       />
     </SafeAreaView>
   );

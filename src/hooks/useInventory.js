@@ -19,6 +19,8 @@ function freshData() {
     history: createInitialHistory(),
     profile: defaultProfile,
     alertsEnabled: true,
+    darkMode: false,
+    largeText: false,
   };
 }
 
@@ -26,6 +28,7 @@ export default function useInventory() {
   const [data, setData] = useState(freshData);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState("");
+  const [lastMutation, setLastMutation] = useState(null);
 
   useEffect(() => {
     loadAppData(freshData())
@@ -93,27 +96,47 @@ export default function useInventory() {
   }
 
   function removeProduct(id) {
-    setData((current) => ({
-      ...current,
-      products: current.products.filter((item) => item.id !== id),
-    }));
+    const product = data.products.find((item) => item.id === id);
+    if (product) setLastMutation({ id: String(Date.now()), type: "remove", product });
+    setData((current) => {
+      return {
+        ...current,
+        products: current.products.filter((item) => item.id !== id),
+      };
+    });
   }
   function registerAction(product, action, icon, tone) {
+    const historyEntry = {
+      id: String(Date.now()),
+      product: product.name,
+      action,
+      date: currentDateLabel(),
+      icon,
+      tone,
+    };
+    setLastMutation({ id: historyEntry.id, type: "action", product, historyId: historyEntry.id, action });
     setData((current) => ({
       ...current,
       products: current.products.filter((item) => item.id !== product.id),
-      history: [
-        {
-          id: String(Date.now()),
-          product: product.name,
-          action,
-          date: currentDateLabel(),
-          icon,
-          tone,
-        },
-        ...current.history,
-      ],
+      history: [historyEntry, ...current.history],
     }));
+  }
+  function undoLastMutation() {
+    if (!lastMutation) return;
+    setData((current) => {
+      if (lastMutation.type === "remove") {
+        return { ...current, products: [lastMutation.product, ...current.products] };
+      }
+      return {
+        ...current,
+        products: [lastMutation.product, ...current.products],
+        history: current.history.filter((item) => item.id !== lastMutation.historyId),
+      };
+    });
+    setLastMutation(null);
+  }
+  function clearLastMutation() {
+    setLastMutation(null);
   }
   function updateProfile(profile) {
     setData((current) => ({ ...current, profile }));
@@ -123,6 +146,12 @@ export default function useInventory() {
       ...current,
       alertsEnabled: !current.alertsEnabled,
     }));
+  }
+  function toggleDarkMode() {
+    setData((current) => ({ ...current, darkMode: !current.darkMode }));
+  }
+  function toggleLargeText() {
+    setData((current) => ({ ...current, largeText: !current.largeText }));
   }
   function resetDemo() {
     setData(freshData());
@@ -140,6 +169,11 @@ export default function useInventory() {
     registerAction,
     updateProfile,
     toggleAlerts,
+    toggleDarkMode,
+    toggleLargeText,
     resetDemo,
+    lastMutation,
+    undoLastMutation,
+    clearLastMutation,
   };
 }
