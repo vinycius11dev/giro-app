@@ -146,6 +146,8 @@ export default function App() {
           onBack={() => setAuthMode("login")}
           onLogin={() => setAuthMode("login")}
           onDemo={handleDemo}
+          darkMode={inventory.darkMode}
+          onToggleDarkMode={inventory.toggleDarkMode}
           styles={themedStyles}
         />
       );

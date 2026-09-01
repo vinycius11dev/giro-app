@@ -13,6 +13,10 @@ const darkBackgrounds = {
   "#EFF6E8": "#244231",
   "#FFF6DD": "#44371A",
   "#FFF0E8": "#432B22",
+  "#FFF9EB": "#3F341C",
+  "#F9D899": "#6A5421",
+  "#D9EFC0": "#2D4A35",
+  "#CFE6B8": "#2D4A35",
 };
 
 function themedColor(color, kind) {
@@ -23,6 +27,13 @@ function themedColor(color, kind) {
     if (["#1B3528", "#1C3327", "#1D3026", "#1E3228", "#203529", "#22382C", "#23372C", "#253A2E", "#26382E", "#2A3E31", "#304238", "#314036", "#18362A", "#1B3427"].includes(color)) return "#F1F6EF";
     if (color.startsWith("#7") || color.startsWith("#8") || color.startsWith("#9")) return "#B7C4BB";
     if (color === "#0D6A49" || color === "#0D6748" || color === "#0E6A49") return "#8DD3AA";
+    const hex = color.replace("#", "");
+    if (/^[0-9a-f]{6}$/i.test(hex)) {
+      const [r, g, b] = [0, 2, 4].map((index) => parseInt(hex.slice(index, index + 2), 16));
+      const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+      if (luminance < 118) return "#F1F6EF";
+      if (luminance < 165) return "#B7C4BB";
+    }
   }
   return color;
 }
@@ -41,6 +52,7 @@ export default function buildThemeStyles(baseStyles, { darkMode = false, largeTe
       if (next.backgroundColor) next.backgroundColor = themedColor(next.backgroundColor, "backgroundColor");
       if (next.borderColor) next.borderColor = themedColor(next.borderColor, "borderColor");
       if (next.color) next.color = themedColor(next.color, "color");
+      if (key === "showcaseTopbar") next.backgroundColor = "#142219";
     }
     if (largeText) {
       if (typeof next.fontSize === "number") next.fontSize = Math.round(next.fontSize * 1.1);

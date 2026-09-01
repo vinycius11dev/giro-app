@@ -36,7 +36,7 @@ function SectionTitle({ eyebrow, title, text, styles }) {
   );
 }
 
-export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles }) {
+export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMode, onToggleDarkMode, styles }) {
   const scrollRef = useRef(null);
   const positions = useRef({});
   const entrance = useRef(new Animated.Value(0)).current;
@@ -97,9 +97,23 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, styles 
           />
           <Text style={styles.showcaseMiniBrandText}>giro</Text>
         </View>
-        <Pressable onPress={onLogin} style={styles.showcaseLoginLink}>
-          <Text style={styles.showcaseLoginLinkText}>Entrar</Text>
-        </Pressable>
+        <View style={styles.showcaseTopActions}>
+          <Pressable
+            onPress={onToggleDarkMode}
+            style={({ hovered, pressed }) => [
+              styles.showcaseThemeButton,
+              hovered && styles.showcaseThemeButtonHover,
+              pressed && { opacity: 0.72 },
+            ]}
+            accessibilityRole="button"
+            accessibilityLabel={darkMode ? "Ativar modo claro" : "Ativar modo escuro"}
+          >
+            <Ionicons name={darkMode ? "sunny-outline" : "moon-outline"} size={17} color="#0D6A49" />
+          </Pressable>
+          <Pressable onPress={onLogin} style={styles.showcaseLoginLink}>
+            <Text style={styles.showcaseLoginLinkText}>Entrar</Text>
+          </Pressable>
+        </View>
       </View>
 
       <Animated.ScrollView

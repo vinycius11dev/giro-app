@@ -845,6 +845,9 @@ const styles = StyleSheet.create({
   showcaseMiniBrandText: { color: "#18362A", fontSize: 20, fontWeight: "800" },
   showcaseLoginLink: { paddingHorizontal: 9, paddingVertical: 8 },
   showcaseLoginLinkText: { color: "#0D6A49", fontSize: 12, fontWeight: "800" },
+  showcaseTopActions: { flexDirection: "row", alignItems: "center", gap: 3 },
+  showcaseThemeButton: { width: 34, height: 34, borderRadius: 12, alignItems: "center", justifyContent: "center", backgroundColor: "#E9F6D5" },
+  showcaseThemeButtonHover: { backgroundColor: "#D5EBB9", transform: [{ scale: 1.05 }] },
   showcaseContent: { padding: 20, paddingTop: 0, paddingBottom: 36 },
   showcaseNav: { gap: 8, paddingVertical: 14 },
   showcaseNavItem: {
