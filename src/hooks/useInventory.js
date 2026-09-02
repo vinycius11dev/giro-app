@@ -12,6 +12,7 @@ import {
   getProductStatus,
   parseDate,
 } from "../utils/productDates";
+import { PLAN_LIMITS, freshUsage, normalizeUsage } from "../data/plans";
 
 function freshData() {
   return {
@@ -21,6 +22,8 @@ function freshData() {
     alertsEnabled: true,
     darkMode: false,
     largeText: false,
+    plan: "free",
+    usage: freshUsage(),
   };
 }
 
@@ -74,8 +77,34 @@ export default function useInventory() {
   const impactRate = data.history.length
     ? Math.round((rescued / data.history.length) * 100)
     : 0;
+  const plan = data.plan === "pro" ? "pro" : "free";
+  const limits = PLAN_LIMITS[plan];
+  const usage = normalizeUsage(data.usage);
+  const subscription = {
+    plan,
+    limits,
+    usage,
+    activeProducts: data.products.length,
+    productsRemaining: Number.isFinite(limits.maxActiveProducts)
+      ? Math.max(0, limits.maxActiveProducts - data.products.length)
+      : null,
+    registrationsRemaining: Number.isFinite(limits.monthlyRegistrations)
+      ? Math.max(0, limits.monthlyRegistrations - usage.registrations)
+      : null,
+    actionsRemaining: Number.isFinite(limits.monthlyActions)
+      ? Math.max(0, limits.monthlyActions - usage.actions)
+      : null,
+  };
 
   function saveProduct(form, editingId) {
+    if (!editingId && plan === "free") {
+      if (data.products.length >= limits.maxActiveProducts) {
+        return { ok: false, reason: "active_products", message: `O plano grátis permite até ${limits.maxActiveProducts} produtos ativos.` };
+      }
+      if (usage.registrations >= limits.monthlyRegistrations) {
+        return { ok: false, reason: "registrations", message: `Você atingiu o limite de ${limits.monthlyRegistrations} cadastros neste mês.` };
+      }
+    }
     const product = {
       id: editingId || String(Date.now()),
       name: form.name.trim(),
@@ -92,7 +121,11 @@ export default function useInventory() {
             item.id === editingId ? product : item,
           )
         : [product, ...current.products],
+      usage: editingId
+        ? normalizeUsage(current.usage)
+        : { ...normalizeUsage(current.usage), registrations: normalizeUsage(current.usage).registrations + 1 },
     }));
+    return { ok: true };
   }
 
   function removeProduct(id) {
@@ -106,6 +139,9 @@ export default function useInventory() {
     });
   }
   function registerAction(product, action, icon, tone) {
+    if (plan === "free" && usage.actions >= limits.monthlyActions) {
+      return { ok: false, reason: "actions", message: `O plano grátis permite ${limits.monthlyActions} ações por mês.` };
+    }
     const historyEntry = {
       id: String(Date.now()),
       product: product.name,
@@ -119,7 +155,9 @@ export default function useInventory() {
       ...current,
       products: current.products.filter((item) => item.id !== product.id),
       history: [historyEntry, ...current.history],
+      usage: { ...normalizeUsage(current.usage), actions: normalizeUsage(current.usage).actions + 1 },
     }));
+    return { ok: true };
   }
   function undoLastMutation() {
     if (!lastMutation) return;
@@ -153,6 +191,9 @@ export default function useInventory() {
   function toggleLargeText() {
     setData((current) => ({ ...current, largeText: !current.largeText }));
   }
+  function upgradeToPro() {
+    setData((current) => ({ ...current, plan: "pro", usage: normalizeUsage(current.usage) }));
+  }
   function resetDemo() {
     setData((current) => {
       const demo = freshData();
@@ -164,6 +205,8 @@ export default function useInventory() {
         alertsEnabled: current.alertsEnabled,
         darkMode: current.darkMode,
         largeText: current.largeText,
+        plan: current.plan,
+        usage: normalizeUsage(current.usage),
       };
     });
   }
@@ -182,6 +225,8 @@ export default function useInventory() {
     toggleAlerts,
     toggleDarkMode,
     toggleLargeText,
+    upgradeToPro,
+    subscription,
     resetDemo,
     lastMutation,
     undoLastMutation,

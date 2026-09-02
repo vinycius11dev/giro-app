@@ -17,6 +17,7 @@
 - [x] Modo escuro, texto maior e feedback com opção de desfazer.
 - [x] Lembretes locais de validade configurados para Android.
 - [x] Consulta de CEP com preenchimento automático de endereço no cadastro e no perfil.
+- [x] Modelo freemium demonstrado com limites mensais, tela de planos e ativação local do Pro.
 
 ## Documentação
 

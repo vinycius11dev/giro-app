@@ -18,12 +18,14 @@ export default function ProfileScreen({
   darkMode,
   largeText,
   impactRate,
+  plan,
   onEditProfile,
   onToggleAlerts,
   onToggleDarkMode,
   onToggleLargeText,
   onHelp,
   onAbout,
+  onSubscription,
   onRestartOnboarding,
   onReset,
   onLogout,
@@ -57,6 +59,13 @@ export default function ProfileScreen({
         icon="business-outline"
         text="Meu estabelecimento"
         onPress={onEditProfile}
+        styles={styles}
+      />
+      <SettingRow
+        icon="sparkles-outline"
+        text="Plano Giro"
+        right={plan === "pro" ? "Pro ativo" : "Grátis"}
+        onPress={onSubscription}
         styles={styles}
       />
       <SettingRow

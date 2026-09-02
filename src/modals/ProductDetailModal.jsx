@@ -55,7 +55,10 @@ export default function ProductDetailModal({
       {
         text: "Confirmar",
         onPress: () => {
-          registerAction(product, action, icon, tone);
+          const result = registerAction(product, action, icon, tone);
+          if (result?.ok === false) {
+            return Alert.alert("Limite do plano gratuito", result.message);
+          }
           close();
         },
       },

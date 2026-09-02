@@ -79,7 +79,10 @@ export default function ProductFormModal({
         "Data inválida",
         "Use uma data real no formato AAAA-MM-DD.",
       );
-    onSave({ ...form, quantity: normalizedQuantity }, product?.id);
+    const result = onSave({ ...form, quantity: normalizedQuantity }, product?.id);
+    if (result?.ok === false) {
+      return Alert.alert("Limite do plano gratuito", result.message);
+    }
     close();
   }
 

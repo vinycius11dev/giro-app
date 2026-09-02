@@ -12,6 +12,8 @@ export async function loadAppData(fallback) {
     ...fallback,
     ...parsed,
     profile: { ...fallback.profile, ...parsed.profile },
+    plan: parsed.plan === "pro" ? "pro" : fallback.plan,
+    usage: { ...fallback.usage, ...parsed.usage },
   };
 }
 

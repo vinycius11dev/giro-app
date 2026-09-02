@@ -36,6 +36,7 @@
 | CT-32 | Explorar apresentação  | No login, navegar por Visão, Como funciona, Negócio e CP4 · CP5 · CP6 | Seções, imagens, métricas de impacto e comparação são exibidas com transições suaves. |
 | CT-33 | Consultar CEP          | No cadastro, informar `01001-000` e tocar em Buscar endereço pelo CEP | Endereço e cidade/estado são preenchidos pela ViaCEP. |
 | CT-34 | Tratar CEP inválido    | Informar um CEP incompleto ou inexistente | Mensagem orienta a correção e permite continuar preenchendo endereço manualmente. |
+| CT-35 | Consultar planos       | Em Conta, tocar em Plano Giro e ativar o Pro | Limites do plano grátis, benefícios do Pro e ativação simulada são exibidos. |
 
 ## Evidências para a entrega
 

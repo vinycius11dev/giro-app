@@ -39,6 +39,8 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 - Login, cadastro de conta e logout com sessão local persistente.
 - Avatar e saudação sincronizados com o nome da conta ativa, inclusive após recarregar o app.
 - Consulta de CEP pela API pública ViaCEP no cadastro e na edição do estabelecimento, com máscara, preenchimento automático e fallback manual.
+- Tela de planos com limites do Giro Essencial, benefícios do Giro Pro e ativação simulada para demonstração do modelo de negócio.
+- Controle local de uso mensal: plano grátis com até 30 produtos ativos, 60 cadastros e 30 ações por mês; plano Pro com recursos ampliados.
 - Apresentação institucional interativa acessível pelo login, com navegação por seções, imagens e modelo de negócio.
 - Apresentação com seção de ODS, métricas de impacto, comparação com planilhas e galeria visual de produtos.
 - Cálculo real da taxa de aproveitamento com base no histórico.
@@ -61,7 +63,9 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 
 ## Modelo de negócio e diferencial
 
-O Giro utiliza um modelo **freemium**. A versão gratuita atende um estabelecimento; a versão Pro pode oferecer múltiplos usuários, relatórios de perdas, exportação de dados e notificações avançadas.
+O Giro utiliza um modelo **freemium**. O **Giro Essencial** é gratuito para um estabelecimento, com até 30 produtos ativos, 60 novos cadastros e 30 ações (oferta, doação ou descarte) por mês. O **Giro Pro**, apresentado na tela de planos, libera produtos e cadastros ilimitados, até cinco estabelecimentos, relatórios avançados, exportação, notificações inteligentes e suporte prioritário.
+
+Na versão acadêmica, a ativação do Pro é uma simulação local para demonstrar a jornada de conversão e as regras de negócio; não há cobrança nem processamento de cartão. Em uma versão comercial, essa etapa seria conectada a um provedor de pagamentos.
 
 Ao contrário de uma planilha de validade, o Giro orienta um destino para cada item próximo ao vencimento. Isso ajuda o comerciante a recuperar valor ou gerar impacto social com doações.
 
@@ -115,13 +119,15 @@ app-mobile/
 │   │   ├── AboutModal.jsx
 │   │   ├── HelpModal.jsx
 │   │   ├── ProductDetailModal.jsx
-│   │   └── ProductFormModal.jsx
+│   │   ├── ProductFormModal.jsx
+│   │   └── SubscriptionModal.jsx  # Planos, limites e ativação simulada
 │   ├── hooks/useInventory.js       # Estado e regras de negócio
 │   ├── hooks/useAuth.js            # Sessão e cadastro local
 │   ├── services/storage.js         # Persistência com AsyncStorage
 │   ├── services/notifications.js    # Lembretes locais de validade
 │   ├── services/cep.js              # Consulta e máscara de CEP (ViaCEP)
 │   ├── data/initialData.js         # Dados mockados iniciais
+│   ├── data/plans.js               # Limites e regras do modelo freemium
 │   ├── styles/appStyles.js         # Identidade visual compartilhada
 │   └── utils/productDates.js       # Datas, validade e prioridade
 ├── docs/
@@ -148,8 +154,9 @@ No Expo, pressione `w` para navegador ou `a` para emulador Android. Também é p
 7. Em **Produtos**, busque ou filtre por urgência e abra um item para ver a recomendação.
 8. Registre uma oferta, doação ou descarte. A ação fica guardada no histórico.
 9. Em **Conta**, edite o estabelecimento, configure os alertas locais, abra a ajuda, veja **Sobre o projeto** ou saia da conta.
-10. Na página inicial, abra Alertas, Oportunidades, Relatórios ou Impacto.
-11. A conta, sessão e dados do estoque permanecem salvos localmente no dispositivo.
+10. Em **Plano Giro**, acompanhe o uso mensal do plano grátis e veja os benefícios do Giro Pro. A ativação é simulada localmente nesta entrega.
+11. Na página inicial, abra Alertas, Oportunidades, Relatórios ou Impacto.
+12. A conta, sessão e dados do estoque permanecem salvos localmente no dispositivo.
 
 ## Testes e evidências
 

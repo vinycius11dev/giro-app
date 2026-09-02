@@ -9,6 +9,7 @@ import useInventory from "./src/hooks/useInventory";
 import AboutModal from "./src/modals/AboutModal";
 import BusinessProfileModal from "./src/modals/BusinessProfileModal";
 import HelpModal from "./src/modals/HelpModal";
+import SubscriptionModal from "./src/modals/SubscriptionModal";
 import ProductDetailModal from "./src/modals/ProductDetailModal";
 import ProductFormModal from "./src/modals/ProductFormModal";
 import HistoryScreen from "./src/screens/HistoryScreen";
@@ -39,6 +40,7 @@ export default function App() {
   const [profileVisible, setProfileVisible] = useState(false);
   const [helpVisible, setHelpVisible] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
+  const [subscriptionVisible, setSubscriptionVisible] = useState(false);
   const [onboardingSeen, setOnboardingSeen] = useState(null);
   const [feedbackMutation, setFeedbackMutation] = useState(null);
   const themedStyles = useMemo(
@@ -220,12 +222,14 @@ export default function App() {
             darkMode={inventory.darkMode}
             largeText={inventory.largeText}
             impactRate={inventory.impactRate}
+            plan={inventory.subscription.plan}
             onEditProfile={() => setProfileVisible(true)}
             onToggleAlerts={inventory.toggleAlerts}
             onToggleDarkMode={inventory.toggleDarkMode}
             onToggleLargeText={inventory.toggleLargeText}
             onHelp={() => setHelpVisible(true)}
             onAbout={() => setAboutVisible(true)}
+            onSubscription={() => setSubscriptionVisible(true)}
             onRestartOnboarding={() => setOnboardingSeen(false)}
             onReset={confirmReset}
             onLogout={handleLogout}
@@ -305,6 +309,18 @@ export default function App() {
       <AboutModal
         visible={aboutVisible}
         close={() => setAboutVisible(false)}
+        styles={themedStyles}
+      />
+      <SubscriptionModal
+        visible={subscriptionVisible}
+        close={() => setSubscriptionVisible(false)}
+        plan={inventory.subscription.plan}
+        subscription={inventory.subscription}
+        onUpgrade={() => {
+          inventory.upgradeToPro();
+          setSubscriptionVisible(false);
+          Alert.alert("Giro Pro ativado", "Os recursos ampliados já estão disponíveis nesta demonstração.");
+        }}
         styles={themedStyles}
       />
       <FeedbackOverlay
