@@ -1,7 +1,7 @@
 export const statusInfo = {
-  today: { color: "#E76832", bg: "#FFF0E8", icon: "flame" },
-  soon: { color: "#C98415", bg: "#FFF6DD", icon: "time" },
-  ok: { color: "#278657", bg: "#E9F7EF", icon: "checkmark-circle" },
+  today: { color: "#E76832", bg: "#FFF0E8", icon: "alert-circle-outline" },
+  soon: { color: "#C98415", bg: "#FFF6DD", icon: "time-outline" },
+  ok: { color: "#278657", bg: "#E9F7EF", icon: "checkmark-circle-outline" },
 };
 
 export function parseDate(value) {
