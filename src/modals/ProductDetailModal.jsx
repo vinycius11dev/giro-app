@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import {
   Alert,
   Image,
@@ -21,13 +21,13 @@ function Action({ label, sub, icon, color, bg, onPress, styles }) {
   return (
     <Pressable style={styles.action} onPress={onPress}>
       <View style={[styles.actionIcon, { backgroundColor: bg }]}>
-        <Ionicons name={icon} size={21} color={color} />
+        <AppIcon name={icon} size={21} color={color} />
       </View>
       <View style={{ flex: 1 }}>
         <Text style={styles.actionLabel}>{label}</Text>
         <Text style={styles.actionSub}>{sub}</Text>
       </View>
-      <Ionicons name="chevron-forward" size={18} color="#AAB2AC" />
+      <AppIcon name="chevron-forward" size={18} color="#AAB2AC" />
     </Pressable>
   );
 }
@@ -84,7 +84,7 @@ export default function ProductDetailModal({
 
   const editButton = (
     <Pressable onPress={edit} hitSlop={12}>
-      <Ionicons name="create-outline" size={23} color="#0D6A49" />
+      <AppIcon name="create-outline" size={23} color="#0D6A49" />
     </Pressable>
   );
   return (
@@ -112,7 +112,7 @@ export default function ProductDetailModal({
                   accessibilityLabel={`Foto de ${product.name}`}
                 />
               ) : (
-                <Ionicons
+                <AppIcon
                   name={categoryIcons[product.category] || "cube-outline"}
                   size={39}
                   color="#0D6A49"
@@ -125,7 +125,7 @@ export default function ProductDetailModal({
               {product.category === "Hortifruti" ? "kg" : "un."}
             </Text>
             <View style={[styles.detailPill, { backgroundColor: info.bg }]}>
-              <Ionicons name={info.icon} size={15} color={info.color} />
+              <AppIcon name={info.icon} size={15} color={info.color} />
               <Text style={[styles.detailPillText, { color: info.color }]}>
                 {getDueText(product.expiry)}
               </Text>
@@ -133,7 +133,7 @@ export default function ProductDetailModal({
           </View>
           <View style={styles.advice}>
             <View style={styles.adviceIcon}>
-              <Ionicons name="sparkles" size={20} color="#0D6A49" />
+              <AppIcon name="sparkles" size={20} color="#0D6A49" />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.adviceTitle}>Sugestão do Giro</Text>
@@ -193,7 +193,7 @@ export default function ProductDetailModal({
             styles={styles}
           />
           <Pressable style={styles.delete} onPress={confirmDelete}>
-            <Ionicons name="trash-outline" size={17} color="#BC3D38" />
+            <AppIcon name="trash-outline" size={17} color="#BC3D38" />
             <Text style={styles.deleteText}>Excluir sem registrar</Text>
           </Pressable>
         </ScrollView>

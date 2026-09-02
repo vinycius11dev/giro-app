@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { useState } from "react";
 import {
   Image,
@@ -61,7 +61,7 @@ export default function LoginScreen({
         <View style={styles.authForm}>
           <Text style={styles.authLabel}>E-mail</Text>
           <View style={styles.authInputWrap}>
-            <Ionicons name="mail-outline" size={18} color="#7A8980" />
+            <AppIcon name="mail-outline" size={18} color="#7A8980" />
             <TextInput
               value={email}
               onChangeText={(value) => {
@@ -77,7 +77,7 @@ export default function LoginScreen({
           </View>
           <Text style={styles.authLabel}>Senha</Text>
           <View style={styles.authInputWrap}>
-            <Ionicons name="lock-closed-outline" size={18} color="#7A8980" />
+            <AppIcon name="lock-closed-outline" size={18} color="#7A8980" />
             <TextInput
               value={password}
               onChangeText={(value) => {
@@ -98,11 +98,11 @@ export default function LoginScreen({
             disabled={loading}
           >
             <Text style={styles.authButtonText}>{loading ? "Entrando..." : "Entrar"}</Text>
-            <Ionicons name="arrow-forward" size={18} color="#fff" />
+            <AppIcon name="arrow-forward" size={18} color="#fff" />
           </Pressable>
         </View>
         <Pressable style={styles.authDemoButton} onPress={onDemo}>
-          <Ionicons name="sparkles-outline" size={17} color="#0D6A49" />
+          <AppIcon name="sparkles-outline" size={17} color="#0D6A49" />
           <Text style={styles.authDemoText}>Acessar demonstração</Text>
         </Pressable>
         <Pressable
@@ -113,9 +113,9 @@ export default function LoginScreen({
           ]}
           onPress={onShowcase}
         >
-          <Ionicons name="bulb-outline" size={17} color="#C98415" />
+          <AppIcon name="bulb-outline" size={17} color="#C98415" />
           <Text style={styles.authIdeaText}>Conheça a ideia do projeto</Text>
-          <Ionicons name="arrow-forward" size={15} color="#C98415" />
+          <AppIcon name="arrow-forward" size={15} color="#C98415" />
         </Pressable>
         <View style={styles.authDivider}>
           <View style={styles.authDividerLine} />

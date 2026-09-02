@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { FlatList, Text, View } from "react-native";
 import EmptyState from "../components/EmptyState";
 
@@ -8,7 +8,7 @@ function HistoryItem({ item, styles }) {
   return (
     <View style={styles.historyItem}>
       <View style={[styles.historyIcon, { backgroundColor: bg }]}>
-        <Ionicons name={item.icon} size={19} color={color} />
+        <AppIcon name={item.icon} size={19} color={color} />
       </View>
       <View style={{ flex: 1 }}>
         <Text style={styles.historyProduct}>{item.product}</Text>
@@ -28,7 +28,7 @@ export default function HistoryScreen({ history, styles }) {
       </Text>
       <View style={styles.impact}>
         <View style={styles.impactIcon}>
-          <Ionicons name="leaf" size={22} color="#0D6A49" />
+          <AppIcon name="leaf" size={22} color="#0D6A49" />
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.impactTitle}>Seu giro já fez diferença</Text>

@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { ScrollView, Text, View } from "react-native";
 import ScreenHeader from "../components/ScreenHeader";
 
@@ -36,22 +36,22 @@ export default function InsightsScreen({
       />
       <View style={styles.reportGrid}>
         <View style={styles.reportCard}>
-          <Ionicons name="cube-outline" size={20} color="#0D6A49" />
+          <AppIcon name="cube-outline" size={20} color="#0D6A49" />
           <Text style={styles.reportValue}>{products.length}</Text>
           <Text style={styles.reportLabel}>Produtos ativos</Text>
         </View>
         <View style={styles.reportCard}>
-          <Ionicons name="layers-outline" size={20} color="#C98415" />
+          <AppIcon name="layers-outline" size={20} color="#C98415" />
           <Text style={styles.reportValue}>{totalUnits}</Text>
           <Text style={styles.reportLabel}>Unidades em estoque</Text>
         </View>
         <View style={styles.reportCard}>
-          <Ionicons name="leaf-outline" size={20} color="#278657" />
+          <AppIcon name="leaf-outline" size={20} color="#278657" />
           <Text style={styles.reportValue}>{impactRate}%</Text>
           <Text style={styles.reportLabel}>Aproveitamento</Text>
         </View>
         <View style={styles.reportCard}>
-          <Ionicons name="pricetag-outline" size={20} color="#E76832" />
+          <AppIcon name="pricetag-outline" size={20} color="#E76832" />
           <Text style={styles.reportValue}>{offers}</Text>
           <Text style={styles.reportLabel}>Ofertas criadas</Text>
         </View>
@@ -82,7 +82,7 @@ export default function InsightsScreen({
         )}
       </View>
       <View style={styles.tip}>
-        <Ionicons name="analytics-outline" size={23} color="#C98415" />
+        <AppIcon name="analytics-outline" size={23} color="#C98415" />
         <Text style={styles.tipText}>
           Os relatórios são atualizados automaticamente a cada alteração no
           estoque ou histórico.

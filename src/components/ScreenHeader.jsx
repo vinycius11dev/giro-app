@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "./AppIcon";
 import { Pressable, Text, View } from "react-native";
 
 export default function ScreenHeader({ title, subtitle, onBack, styles }) {
@@ -11,7 +11,7 @@ export default function ScreenHeader({ title, subtitle, onBack, styles }) {
         accessibilityRole="button"
         accessibilityLabel="Voltar"
       >
-        <Ionicons name="arrow-back" size={21} color="#0D6A49" />
+        <AppIcon name="arrow-back" size={21} color="#0D6A49" />
       </Pressable>
       <View style={{ flex: 1 }}>
         <Text style={styles.subScreenTitle}>{title}</Text>

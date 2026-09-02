@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import ProductCard from "../components/ProductCard";
@@ -24,7 +24,7 @@ function Metric({ value, text, tone, styles }) {
   const info = statusInfo[tone];
   return (
     <View style={[styles.metric, { backgroundColor: info.bg }]}>
-      <Ionicons name={info.icon} size={18} color={info.color} />
+      <AppIcon name={info.icon} size={18} color={info.color} />
       <Text style={[styles.metricNumber, { color: info.color }]}>{value}</Text>
       <Text style={styles.metricText}>{text}</Text>
     </View>
@@ -34,7 +34,7 @@ function Metric({ value, text, tone, styles }) {
 function EmptyState({ text, styles }) {
   return (
     <View style={styles.empty}>
-      <Ionicons name="leaf-outline" size={25} color="#77A990" />
+      <AppIcon name="leaf-outline" size={25} color="#77A990" />
       <Text style={styles.emptyText}>{text}</Text>
     </View>
   );
@@ -96,7 +96,7 @@ export default function HomeScreen({
             : "Seus produtos estão dentro do prazo."}
         </Text>
         <View style={styles.leaf}>
-          <Ionicons
+          <AppIcon
             name={stats.today ? "leaf" : "checkmark"}
             size={33}
             color="#E9F6D5"
@@ -104,7 +104,7 @@ export default function HomeScreen({
         </View>
         <Pressable style={styles.heroButton} onPress={goProducts}>
           <Text style={styles.heroButtonText}>Ver produtos</Text>
-          <Ionicons name="arrow-forward" size={16} color="#0D6748" />
+          <AppIcon name="arrow-forward" size={16} color="#0D6748" />
         </Pressable>
       </LinearGradient>
       <Header
@@ -196,7 +196,7 @@ export default function HomeScreen({
         <EmptyState text="Nenhum item urgente por enquanto." styles={styles} />
       )}
       <Pressable style={styles.mainButton} onPress={() => openForm()}>
-        <Ionicons name="add-circle" size={20} color="#fff" />
+        <AppIcon name="add-circle" size={20} color="#fff" />
         <Text style={styles.mainButtonText}>Adicionar produto</Text>
       </Pressable>
     </ScrollView>

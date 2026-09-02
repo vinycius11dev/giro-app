@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { Modal, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ModalHeader from "../components/ModalHeader";
 
@@ -42,7 +42,7 @@ export default function HelpModal({ visible, close, styles }) {
           {tips.map(([icon, title, text]) => (
             <View key={title} style={styles.action}>
               <View style={[styles.actionIcon, { backgroundColor: "#E9F6D5" }]}>
-                <Ionicons name={icon} size={21} color="#0D6A49" />
+                <AppIcon name={icon} size={21} color="#0D6A49" />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.actionLabel}>{title}</Text>
@@ -51,7 +51,7 @@ export default function HelpModal({ visible, close, styles }) {
             </View>
           ))}
           <View style={styles.tip}>
-            <Ionicons
+            <AppIcon
               name="information-circle-outline"
               size={23}
               color="#C98415"

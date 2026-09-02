@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { Image, Modal, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ModalHeader from "../components/ModalHeader";
 
@@ -27,7 +27,7 @@ export default function AboutModal({ visible, close, styles }) {
           {points.map(([icon, title, text]) => (
             <View key={title} style={styles.action}>
               <View style={[styles.actionIcon, { backgroundColor: "#E9F6D5" }]}>
-                <Ionicons name={icon} size={21} color="#0D6A49" />
+                <AppIcon name={icon} size={21} color="#0D6A49" />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.actionLabel}>{title}</Text>

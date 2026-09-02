@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { ScrollView, Text, View } from "react-native";
 import SettingRow from "../components/SettingRow";
 
@@ -120,7 +120,7 @@ export default function ProfileScreen({
         styles={styles}
       />
       <View style={styles.tip}>
-        <Ionicons name="bulb-outline" size={23} color="#C98415" />
+        <AppIcon name="bulb-outline" size={23} color="#C98415" />
         <Text style={styles.tipText}>
           Dica Giro: registre os produtos assim que chegarem para receber
           alertas no momento certo.

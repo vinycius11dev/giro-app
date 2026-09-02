@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { useMemo, useState } from "react";
 import { FlatList, Pressable, ScrollView, Text, View } from "react-native";
 import EmptyState from "../components/EmptyState";
@@ -59,7 +59,7 @@ export default function ProductsScreen({
           <Text style={styles.subtitle}>Seu estoque, sempre no giro.</Text>
         </View>
         <Pressable style={styles.plus} onPress={() => openForm()}>
-          <Ionicons name="add" size={25} color="#fff" />
+          <AppIcon name="add" size={25} color="#fff" />
         </Pressable>
       </View>
       <SearchBar value={search} onChangeText={setSearch} styles={styles} />

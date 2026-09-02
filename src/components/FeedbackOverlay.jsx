@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "./AppIcon";
 import { useEffect, useRef } from "react";
 import { Animated, Pressable, Text, View } from "react-native";
 
@@ -33,7 +33,7 @@ export default function FeedbackOverlay({ mutation, onUndo, styles }) {
         </View>
       )}
       <Animated.View style={[styles.feedbackBar, { opacity: progress, transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [18, 0] }) }] }]}>
-        <Ionicons name={isAction ? "checkmark-circle" : "trash-outline"} size={20} color={isAction ? "#CFEAB7" : "#FFD3BD"} />
+        <AppIcon name={isAction ? "checkmark-circle" : "trash-outline"} size={20} color={isAction ? "#CFEAB7" : "#FFD3BD"} />
         <Text style={styles.feedbackText} numberOfLines={2}>
           {isAction ? `${mutation.action} registrada.` : "Produto excluído."}
         </Text>

@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { FlatList, Text, View } from "react-native";
 import EmptyState from "../components/EmptyState";
 import ScreenHeader from "../components/ScreenHeader";
@@ -30,17 +30,17 @@ export default function ImpactScreen({ history, impactRate, onBack, styles }) {
       </View>
       <View style={styles.impactStats}>
         <View style={styles.impactStat}>
-          <Ionicons name="pricetag-outline" size={19} color="#E76832" />
+          <AppIcon name="pricetag-outline" size={19} color="#E76832" />
           <Text style={styles.impactStatValue}>{offers}</Text>
           <Text style={styles.impactStatLabel}>Ofertas</Text>
         </View>
         <View style={styles.impactStat}>
-          <Ionicons name="heart-outline" size={19} color="#278657" />
+          <AppIcon name="heart-outline" size={19} color="#278657" />
           <Text style={styles.impactStatValue}>{donations}</Text>
           <Text style={styles.impactStatLabel}>Doações</Text>
         </View>
         <View style={styles.impactStat}>
-          <Ionicons name="trash-outline" size={19} color="#6F7872" />
+          <AppIcon name="trash-outline" size={19} color="#6F7872" />
           <Text style={styles.impactStatValue}>{discarded}</Text>
           <Text style={styles.impactStatLabel}>Descartes</Text>
         </View>

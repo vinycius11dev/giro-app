@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useEffect, useState } from "react";
 import {
@@ -124,7 +124,7 @@ export default function ProductFormModal({
                 ]}
                 onPress={() => setForm({ ...form, category })}
               >
-                <Ionicons
+                <AppIcon
                   name={categoryIcons[category]}
                   size={16}
                   color={form.category === category ? "#0E6A49" : "#647269"}
@@ -164,7 +164,7 @@ export default function ProductFormModal({
             accessibilityRole="button"
             accessibilityLabel="Abrir calendário para escolher a validade"
           >
-            <Ionicons name="calendar-outline" size={17} color="#0D6A49" />
+            <AppIcon name="calendar-outline" size={17} color="#0D6A49" />
             <Text style={styles.datePickerButtonText}>Escolher no calendário</Text>
           </Pressable>
           {calendarVisible && Platform.OS !== "web" && (
@@ -207,7 +207,7 @@ export default function ProductFormModal({
             <Text style={styles.saveText}>
               {product ? "Salvar alterações" : "Adicionar ao estoque"}
             </Text>
-            <Ionicons name="arrow-forward" size={18} color="#fff" />
+            <AppIcon name="arrow-forward" size={18} color="#fff" />
           </Pressable>
         </ScrollView>
       </SafeAreaView>

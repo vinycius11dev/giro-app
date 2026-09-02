@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -125,7 +125,7 @@ export default function BusinessProfileModal({
                 accessibilityLabel="Buscar endereço pelo CEP"
                 accessibilityHint="Consulta o endereço informado"
               >
-                {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={19} color="#0D6A49" />}
+                {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <AppIcon name="search-outline" size={19} color="#0D6A49" />}
               </Pressable>
             )}
           />
@@ -139,7 +139,7 @@ export default function BusinessProfileModal({
           />
           <Pressable style={styles.save} onPress={submit}>
             <Text style={styles.saveText}>Salvar perfil</Text>
-            <Ionicons name="checkmark" size={19} color="#fff" />
+            <AppIcon name="checkmark" size={19} color="#fff" />
           </Pressable>
         </ScrollView>
       </SafeAreaView>

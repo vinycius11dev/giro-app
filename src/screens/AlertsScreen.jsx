@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { FlatList, Text, View } from "react-native";
 import EmptyState from "../components/EmptyState";
 import ProductCard from "../components/ProductCard";
@@ -29,7 +29,7 @@ export default function AlertsScreen({
           { backgroundColor: alertsEnabled ? "#E9F7EF" : "#F1F2EF" },
         ]}
       >
-        <Ionicons
+        <AppIcon
           name={alertsEnabled ? "notifications" : "notifications-off"}
           size={22}
           color={alertsEnabled ? "#278657" : "#6F7872"}

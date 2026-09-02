@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "./AppIcon";
 import { Pressable, Text, View } from "react-native";
 
 const tabs = [
@@ -13,7 +13,7 @@ export default function BottomTabs({ active, setActive, styles }) {
     <View style={styles.tabs}>
       {tabs.map(([id, label, outline, filled]) => (
         <Pressable key={id} style={styles.tab} onPress={() => setActive(id)}>
-          <Ionicons
+          <AppIcon
             name={active === id ? filled : outline}
             size={22}
             color={active === id ? "#0D6A49" : "#9AA49D"}

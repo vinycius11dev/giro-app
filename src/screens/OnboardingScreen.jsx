@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { useEffect, useRef, useState } from "react";
 import { Animated, Image, Pressable, SafeAreaView, Text, View, useWindowDimensions } from "react-native";
 
@@ -77,7 +77,7 @@ export default function OnboardingScreen({ onFinish, styles }) {
       <Animated.View style={[styles.onboardingBody, isCompact && styles.onboardingBodyCompact, { opacity: fade }]}>
         <View style={[styles.onboardingCard, isCompact && styles.onboardingCardCompact]}>
           <View style={[styles.onboardingIcon, isCompact && styles.onboardingIconCompact, { backgroundColor: slide.color }]}>
-            <Ionicons name={slide.icon} size={44} color="#0D6A49" />
+            <AppIcon name={slide.icon} size={44} color="#0D6A49" />
           </View>
           <Text style={styles.onboardingEyebrow}>{slide.eyebrow}</Text>
           <Text style={[styles.onboardingTitle, isCompact && styles.onboardingTitleCompact]}>{slide.title}</Text>
@@ -113,7 +113,7 @@ export default function OnboardingScreen({ onFinish, styles }) {
             accessibilityLabel="Voltar para a etapa anterior"
             accessibilityState={{ disabled: index === 0 }}
           >
-            <Ionicons name="arrow-back" size={18} color={index === 0 ? "#B8C2BA" : "#0D6A49"} />
+            <AppIcon name="arrow-back" size={18} color={index === 0 ? "#B8C2BA" : "#0D6A49"} />
           </Pressable>
           <Pressable
             style={({ pressed }) => [
@@ -128,7 +128,7 @@ export default function OnboardingScreen({ onFinish, styles }) {
             <Text style={styles.onboardingButtonText}>
               {index === slides.length - 1 ? "Começar no Giro" : "Continuar"}
             </Text>
-            <Ionicons name="arrow-forward" size={18} color="#fff" />
+            <AppIcon name="arrow-forward" size={18} color="#fff" />
           </Pressable>
         </View>
       </View>

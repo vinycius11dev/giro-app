@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -19,7 +19,7 @@ function Field({ icon, label, value, onChangeText, placeholder, secure, styles, 
       <Text style={styles.authLabel}>{label}</Text>
       <View style={rightAction ? styles.cepFieldRow : undefined}>
         <View style={[styles.authInputWrap, rightAction && styles.cepInputWrap]}>
-          <Ionicons name={icon} size={18} color="#7A8980" />
+          <AppIcon name={icon} size={18} color="#7A8980" />
           <TextInput
             value={value}
             onChangeText={onChangeText}
@@ -109,7 +109,7 @@ export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
         showsVerticalScrollIndicator={false}
       >
         <Pressable style={styles.authBack} onPress={onBack}>
-          <Ionicons name="arrow-back" size={20} color="#0D6A49" />
+          <AppIcon name="arrow-back" size={20} color="#0D6A49" />
           <Text style={styles.authBackText}>Voltar para entrar</Text>
         </Pressable>
         <View style={styles.authBrand}>
@@ -149,7 +149,7 @@ export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
                   accessibilityLabel="Buscar endereço pelo CEP"
                   accessibilityHint="Consulta o endereço informado"
                 >
-                  {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <Ionicons name="search-outline" size={19} color="#0D6A49" />}
+                  {cepLoading ? <ActivityIndicator size="small" color="#0D6A49" /> : <AppIcon name="search-outline" size={19} color="#0D6A49" />}
                 </Pressable>
               )}
             />
@@ -165,7 +165,7 @@ export default function SignUpScreen({ onBack, onCreateAccount, styles }) {
             disabled={loading}
           >
             <Text style={styles.authButtonText}>{loading ? "Criando..." : "Criar minha conta"}</Text>
-            <Ionicons name="arrow-forward" size={18} color="#fff" />
+            <AppIcon name="arrow-forward" size={18} color="#fff" />
           </Pressable>
         </View>
         <Text style={styles.authNote}>Seus dados ficam salvos localmente neste dispositivo.</Text>

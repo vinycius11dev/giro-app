@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { FlatList, Image, Pressable, Text, View } from "react-native";
 import EmptyState from "../components/EmptyState";
 import ScreenHeader from "../components/ScreenHeader";
@@ -23,7 +23,7 @@ export default function OpportunitiesScreen({
         styles={styles}
       />
       <View style={styles.opportunityHero}>
-        <Ionicons name="sparkles" size={24} color="#C98415" />
+        <AppIcon name="sparkles" size={24} color="#C98415" />
         <Text style={styles.opportunityHeroTitle}>
           Transforme urgência em venda
         </Text>
@@ -53,7 +53,7 @@ export default function OpportunitiesScreen({
                     accessibilityLabel={`Foto de ${item.name}`}
                   />
                 ) : (
-                  <Ionicons
+                  <AppIcon
                     name={categoryIcons[item.category] || "cube-outline"}
                     size={24}
                     color="#0D6A49"
@@ -73,7 +73,7 @@ export default function OpportunitiesScreen({
                   {today ? "até 30% de desconto" : "até 15% de desconto"}
                 </Text>
               </View>
-              <Ionicons name="chevron-forward" size={19} color="#B6BEB8" />
+              <AppIcon name="chevron-forward" size={19} color="#B6BEB8" />
             </Pressable>
           );
         }}

@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "./AppIcon";
 import { Text, View } from "react-native";
 
 export default function EmptyState({
@@ -8,7 +8,7 @@ export default function EmptyState({
 }) {
   return (
     <View style={styles.empty}>
-      <Ionicons name="leaf-outline" size={27} color="#77A990" />
+      <AppIcon name="leaf-outline" size={27} color="#77A990" />
       <Text style={[styles.emptyText, { fontWeight: "800", color: "#314238" }]}>
         {title}
       </Text>

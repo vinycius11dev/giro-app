@@ -75,7 +75,7 @@ Ao contrário de uma planilha de validade, o Giro orienta um destino para cada i
 - AsyncStorage para persistência local sem necessidade de backend.
 - expo-notifications para lembretes locais de validade no Android.
 - expo-linear-gradient para o destaque visual do painel.
-- @expo/vector-icons para ícones consistentes.
+- Lucide React Native + react-native-svg para ícones vetoriais SVG consistentes.
 - ViaCEP para consulta de endereço a partir do CEP, sem armazenar dados fora do dispositivo.
 - Hook `useInventory` como camada central das regras de negócio.
 - Serviço de armazenamento isolado para facilitar manutenção e evolução.

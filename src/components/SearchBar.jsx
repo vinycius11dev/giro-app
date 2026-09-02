@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "./AppIcon";
 import { Pressable, TextInput, View } from "react-native";
 
 export default function SearchBar({ value, onChangeText, styles }) {
@@ -9,7 +9,7 @@ export default function SearchBar({ value, onChangeText, styles }) {
         { flexDirection: "row", alignItems: "center", marginBottom: 13 },
       ]}
     >
-      <Ionicons name="search" size={19} color="#748078" />
+      <AppIcon name="search" size={19} color="#748078" />
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -19,7 +19,7 @@ export default function SearchBar({ value, onChangeText, styles }) {
       />
       {value ? (
         <Pressable onPress={() => onChangeText("")}>
-          <Ionicons name="close-circle" size={19} color="#A3ADA6" />
+          <AppIcon name="close-circle" size={19} color="#A3ADA6" />
         </Pressable>
       ) : null}
     </View>

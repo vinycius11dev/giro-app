@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "../components/AppIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef } from "react";
 import {
@@ -21,7 +21,7 @@ const navItems = [
 function IconBox({ icon, color, background, styles }) {
   return (
     <View style={[styles.showcaseIconBox, { backgroundColor: background }]}>
-      <Ionicons name={icon} size={20} color={color} />
+      <AppIcon name={icon} size={20} color={color} />
     </View>
   );
 }
@@ -86,7 +86,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
             pressed && { opacity: 0.72 },
           ]}
         >
-          <Ionicons name="arrow-back" size={19} color="#0D6A49" />
+          <AppIcon name="arrow-back" size={19} color="#0D6A49" />
           <Text style={styles.showcaseBackText}>Voltar</Text>
         </Pressable>
         <View style={styles.showcaseMiniBrand}>
@@ -108,7 +108,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
             accessibilityRole="button"
             accessibilityLabel={darkMode ? "Ativar modo claro" : "Ativar modo escuro"}
           >
-            <Ionicons name={darkMode ? "sunny-outline" : "moon-outline"} size={17} color="#0D6A49" />
+            <AppIcon name={darkMode ? "sunny-outline" : "moon-outline"} size={17} color="#0D6A49" />
           </Pressable>
           <Pressable onPress={onLogin} style={styles.showcaseLoginLink}>
             <Text style={styles.showcaseLoginLinkText}>Entrar</Text>
@@ -170,7 +170,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                   ]}
                 >
                   <Text style={styles.showcasePrimaryButtonText}>Ver demonstração</Text>
-                  <Ionicons name="arrow-forward" size={16} color="#0D6748" />
+                  <AppIcon name="arrow-forward" size={16} color="#0D6748" />
                 </Pressable>
                 <Text style={styles.showcaseHeroHint}>React Native · Expo · Offline</Text>
               </View>
@@ -260,7 +260,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                   ["restaurant-outline", "Restaurantes e hortifrutis"],
                 ].map(([icon, label]) => (
                   <View key={label} style={styles.showcaseAudienceItem}>
-                    <Ionicons name={icon} size={17} color="#E9F6D5" />
+                    <AppIcon name={icon} size={17} color="#E9F6D5" />
                     <Text style={styles.showcaseAudienceText}>{label}</Text>
                   </View>
                 ))}
@@ -321,7 +321,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
               ].map(([label, enabled]) => (
                 <View key={label} style={styles.showcaseCompareRow}>
                   <Text style={styles.showcaseCompareLabel}>{label}</Text>
-                  <View style={styles.showcaseCompareCheck}><Ionicons name={enabled ? "checkmark" : "close"} size={14} color="#0D6A49" /></View>
+                  <View style={styles.showcaseCompareCheck}><AppIcon name={enabled ? "checkmark" : "close"} size={14} color="#0D6A49" /></View>
                 </View>
               ))}
             </View>
@@ -365,7 +365,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                   "1 estabelecimento + alertas e histórico",
                 ].map((item) => (
                   <View key={item} style={styles.showcasePlanItem}>
-                    <Ionicons name="checkmark-circle" size={17} color="#278657" />
+                    <AppIcon name="checkmark-circle" size={17} color="#278657" />
                     <Text style={styles.showcasePlanItemText}>{item}</Text>
                   </View>
                 ))}
@@ -383,7 +383,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                   "Relatórios, exportação e notificações inteligentes",
                 ].map((item) => (
                   <View key={item} style={styles.showcasePlanItem}>
-                    <Ionicons name="checkmark-circle" size={17} color="#E76832" />
+                    <AppIcon name="checkmark-circle" size={17} color="#E76832" />
                     <Text style={styles.showcasePlanItemText}>{item}</Text>
                   </View>
                 ))}
@@ -442,7 +442,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                     <Text style={styles.showcaseCheckpointTitle}>{title}</Text>
                     <Text style={styles.showcaseCheckpointText}>{text}</Text>
                   </View>
-                  <Ionicons name={index === 2 ? "rocket-outline" : "checkmark-circle-outline"} size={20} color="#0D6A49" />
+                  <AppIcon name={index === 2 ? "rocket-outline" : "checkmark-circle-outline"} size={20} color="#0D6A49" />
                 </View>
               ))}
             </View>
@@ -460,7 +460,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
               ]}
             >
               <Text style={styles.showcaseCtaButtonText}>Entrar na demonstração</Text>
-              <Ionicons name="arrow-forward" size={17} color="#0D6748" />
+              <AppIcon name="arrow-forward" size={17} color="#0D6748" />
             </Pressable>
           </View>
           <Text style={styles.showcaseFooter}>Giro · Menos desperdício, mais resultado.</Text>

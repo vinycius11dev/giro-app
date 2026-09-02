@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import AppIcon from "./AppIcon";
 import { Image, Pressable, Text, View } from "react-native";
 import { categoryIcons, productImages } from "../data/initialData";
 import {
@@ -20,7 +20,7 @@ export default function ProductCard({ item, onPress, styles }) {
             accessibilityLabel={`Foto de ${item.name}`}
           />
         ) : (
-          <Ionicons
+          <AppIcon
             name={categoryIcons[item.category] || "cube-outline"}
             size={24}
             color="#0D6A49"
@@ -36,13 +36,13 @@ export default function ProductCard({ item, onPress, styles }) {
           {item.category}
         </Text>
         <View style={[styles.pill, { backgroundColor: info.bg }]}>
-          <Ionicons name={info.icon} size={12} color={info.color} />
+          <AppIcon name={info.icon} size={12} color={info.color} />
           <Text style={[styles.pillText, { color: info.color }]}>
             {getDueText(item.expiry)}
           </Text>
         </View>
       </View>
-      <Ionicons name="chevron-forward" size={19} color="#B6BEB8" />
+      <AppIcon name="chevron-forward" size={19} color="#B6BEB8" />
     </Pressable>
   );
 }
