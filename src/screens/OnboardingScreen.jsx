@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
-import { Animated, Image, Pressable, SafeAreaView, Text, View } from "react-native";
+import { Animated, Image, Pressable, SafeAreaView, Text, View, useWindowDimensions } from "react-native";
 
 const slides = [
   {
@@ -29,6 +29,8 @@ const slides = [
 export default function OnboardingScreen({ onFinish, styles }) {
   const [index, setIndex] = useState(0);
   const fade = useRef(new Animated.Value(1)).current;
+  const { width } = useWindowDimensions();
+  const isCompact = width < 480;
   const slide = slides[index];
 
   useEffect(() => {
@@ -49,7 +51,7 @@ export default function OnboardingScreen({ onFinish, styles }) {
   }
 
   return (
-    <SafeAreaView style={styles.onboardingScreen}>
+    <SafeAreaView style={[styles.onboardingScreen, isCompact && styles.onboardingScreenCompact]}>
       <View style={styles.onboardingTop}>
         <View style={styles.onboardingBrand}>
           <Image
@@ -72,17 +74,17 @@ export default function OnboardingScreen({ onFinish, styles }) {
           <Text style={styles.onboardingSkip}>Pular</Text>
         </Pressable>
       </View>
-      <Animated.View style={[styles.onboardingBody, { opacity: fade }]}>
-        <View style={styles.onboardingCard}>
-          <View style={[styles.onboardingIcon, { backgroundColor: slide.color }]}>
+      <Animated.View style={[styles.onboardingBody, isCompact && styles.onboardingBodyCompact, { opacity: fade }]}>
+        <View style={[styles.onboardingCard, isCompact && styles.onboardingCardCompact]}>
+          <View style={[styles.onboardingIcon, isCompact && styles.onboardingIconCompact, { backgroundColor: slide.color }]}>
             <Ionicons name={slide.icon} size={44} color="#0D6A49" />
           </View>
           <Text style={styles.onboardingEyebrow}>{slide.eyebrow}</Text>
-          <Text style={styles.onboardingTitle}>{slide.title}</Text>
-          <Text style={styles.onboardingText}>{slide.text}</Text>
+          <Text style={[styles.onboardingTitle, isCompact && styles.onboardingTitleCompact]}>{slide.title}</Text>
+          <Text style={[styles.onboardingText, isCompact && styles.onboardingTextCompact]}>{slide.text}</Text>
         </View>
       </Animated.View>
-      <View style={styles.onboardingBottom}>
+      <View style={[styles.onboardingBottom, isCompact && styles.onboardingBottomCompact]}>
         <View style={styles.onboardingProgressRow}>
           <View style={styles.onboardingDots} accessibilityLabel={`Etapa ${index + 1} de ${slides.length}`}>
             {slides.map((item, dotIndex) => (
