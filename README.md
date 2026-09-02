@@ -55,6 +55,7 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 - **Personalidade:** prática, otimista, humana e confiável.
 - **Cor principal:** verde `#0D6A49`, associada a aproveitamento e impacto positivo.
 - **Cor de ação:** laranja `#E76832`, indicando urgência sem agressividade.
+- **Tipografia:** sans-serif nativa do sistema, usando pesos fortes para títulos e leitura confortável no celular.
 - **Logotipo:** monograma “g” construído por um ciclo de renovação, com folha para representar alimentos e sustentabilidade e selo laranja para indicar um item conferido.
 - **Arquivos da marca:** `assets/giro-logo.png` (fundo transparente) e `assets/giro-app-icon.png` (ícone oficial sobre fundo creme).
 

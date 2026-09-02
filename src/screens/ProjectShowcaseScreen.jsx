@@ -399,6 +399,29 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
             </View>
           </View>
 
+          <View style={styles.showcaseSection}>
+            <SectionTitle
+              eyebrow="BASE DO PROJETO"
+              title="Uma ideia documentada, uma marca reconhecível e um app organizado."
+              text="Esta é a base apresentada no CP4: do problema e do público até a identidade visual e o setup técnico que sustenta a evolução do Giro."
+              styles={styles}
+            />
+            <View style={styles.showcaseFoundationGrid}>
+              {[
+                ["document-text-outline", "Documentação", "README, escopo, manual de uso, roteiro de testes e decisões técnicas organizados no GitHub."],
+                ["color-palette-outline", "Marca e identidade", "Nome Giro, logo do ciclo com folha, verde de impacto, laranja de ação e tipografia sans-serif nativa."],
+                ["code-slash-outline", "Setup técnico", "React Native + Expo em JSX, estrutura modular de telas, componentes, hooks, serviços e dados."],
+                ["sparkles-outline", "Identidade aplicada", "Telas conceituais, navegação, cartões, hierarquia visual e estados de interação formam a identidade do produto."],
+              ].map(([icon, title, text]) => (
+                <View key={title} style={styles.showcaseFoundationCard}>
+                  <IconBox icon={icon} color="#0D6A49" background="#E9F6D5" styles={styles} />
+                  <Text style={styles.showcaseFoundationTitle}>{title}</Text>
+                  <Text style={styles.showcaseFoundationText}>{text}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+
           <View onLayout={remember("entrega")} style={styles.showcaseSection}>
             <SectionTitle
               eyebrow="ENTREGA ACADÊMICA"
