@@ -349,7 +349,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
             <SectionTitle
               eyebrow="MODELO DE NEGÓCIO"
               title="Valor para o negócio e para a comunidade."
-              text="O Giro pode crescer com um modelo freemium, mantendo o essencial acessível para quem está começando."
+              text="O Giro usa um modelo freemium: o plano Essencial resolve a rotina de um pequeno comércio e o Pro libera escala quando a operação cresce. A tela Plano Giro mostra limites, uso mensal e benefícios antes da conversão."
               styles={styles}
             />
             <View style={styles.showcasePlans}>
@@ -358,11 +358,11 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                   <Text style={styles.showcasePlanName}>Giro Essencial</Text>
                   <Text style={styles.showcasePlanPrice}>Grátis</Text>
                 </View>
-                <Text style={styles.showcasePlanDescription}>Para um estabelecimento começar a reduzir perdas.</Text>
+                <Text style={styles.showcasePlanDescription}>Para um estabelecimento começar a reduzir perdas, sem custo.</Text>
                 {[
-                  "Cadastro de produtos",
-                  "Alertas e filtros de validade",
-                  "Oferta, doação e histórico",
+                  "Até 30 produtos ativos",
+                  "60 cadastros e 30 ações por mês",
+                  "1 estabelecimento + alertas e histórico",
                 ].map((item) => (
                   <View key={item} style={styles.showcasePlanItem}>
                     <Ionicons name="checkmark-circle" size={17} color="#278657" />
@@ -376,11 +376,11 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                   <Text style={styles.showcasePlanName}>Giro Pro</Text>
                   <Text style={styles.showcasePlanPrice}>Assinatura</Text>
                 </View>
-                <Text style={styles.showcasePlanDescription}>Para redes e operações que precisam crescer com dados.</Text>
+                <Text style={styles.showcasePlanDescription}>Para redes e operações que precisam crescer com dados e várias lojas.</Text>
                 {[
-                  "Múltiplos usuários e lojas",
-                  "Relatórios avançados e exportação",
-                  "Notificações inteligentes",
+                  "Produtos e cadastros ilimitados",
+                  "Até 5 estabelecimentos",
+                  "Relatórios, exportação e notificações inteligentes",
                 ].map((item) => (
                   <View key={item} style={styles.showcasePlanItem}>
                     <Ionicons name="checkmark-circle" size={17} color="#E76832" />
@@ -389,6 +389,7 @@ export default function ProjectShowcaseScreen({ onBack, onLogin, onDemo, darkMod
                 ))}
               </View>
             </View>
+            <Text style={[styles.showcaseSectionText, { marginTop: 10 }]}>Na entrega acadêmica, o botão de ativação simula a assinatura localmente e não realiza cobrança. Em uma versão comercial, essa etapa seria conectada a um provedor de pagamentos.</Text>
           </View>
 
           <View style={styles.showcaseImpactRow}>

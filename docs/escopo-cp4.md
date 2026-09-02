@@ -40,6 +40,10 @@ Criar conta/entrar → adicionar produto → Giro calcula a prioridade → equip
 
 Planilhas e sistemas de estoque tradicionais exigem configuração e não tornam a validade uma decisão simples. O Giro é leve, mobile e centrado em redução de desperdício: todo item perto do vencimento ganha uma recomendação de destino.
 
+## Modelo de negócio
+
+O plano **Giro Essencial** é gratuito para um estabelecimento, com limite de 30 produtos ativos, 60 cadastros e 30 ações por mês. O plano **Giro Pro** atende operações em crescimento com produtos e cadastros ilimitados, até cinco estabelecimentos, relatórios avançados, exportação e notificações inteligentes. A tela de planos do app demonstra essa jornada de conversão; a ativação é simulada localmente nesta versão acadêmica.
+
 ## Organização técnica
 
 ```text
