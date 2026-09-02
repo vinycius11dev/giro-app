@@ -220,9 +220,15 @@ As capturas abaixo foram organizadas por fluxo e mostram a execução atual do a
 | --- | --- | --- |
 | [<img src="docs/evidencias/14-alertas.png" width="180" alt="Tela de alertas" />](docs/evidencias/14-alertas.png) | [<img src="docs/evidencias/15-oportunidades.png" width="180" alt="Tela de oportunidades" />](docs/evidencias/15-oportunidades.png) | [<img src="docs/evidencias/16-relatorios.png" width="180" alt="Tela de relatórios" />](docs/evidencias/16-relatorios.png) |
 
-| Impacto | Onboarding |
-| --- | --- |
-| [<img src="docs/evidencias/17-impacto.png" width="180" alt="Tela de impacto" />](docs/evidencias/17-impacto.png) | [<img src="docs/evidencias/18-onboarding.png" width="180" alt="Onboarding" />](docs/evidencias/18-onboarding.png) |
+| Impacto |
+| --- |
+| [<img src="docs/evidencias/17-impacto.png" width="180" alt="Tela de impacto" />](docs/evidencias/17-impacto.png) |
+
+### Introdução passo a passo
+
+| Abertura | Prioridades | Impacto positivo |
+| --- | --- | --- |
+| [<img src="docs/evidencias/18-onboarding.png" width="180" alt="Introdução — etapa 1" />](docs/evidencias/18-onboarding.png) | [<img src="docs/evidencias/26-onboarding-etapa-2.png" width="180" alt="Introdução — etapa 2" />](docs/evidencias/26-onboarding-etapa-2.png) | [<img src="docs/evidencias/27-onboarding-etapa-3.png" width="180" alt="Introdução — etapa 3" />](docs/evidencias/27-onboarding-etapa-3.png) |
 
 ### Apresentação institucional
 

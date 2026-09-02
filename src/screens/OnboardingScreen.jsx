@@ -43,6 +43,11 @@ export default function OnboardingScreen({ onFinish, styles }) {
     setIndex((current) => current + 1);
   }
 
+  function previous() {
+    if (index === 0) return;
+    setIndex((current) => current - 1);
+  }
+
   return (
     <SafeAreaView style={styles.onboardingScreen}>
       <View style={styles.onboardingTop}>
@@ -55,7 +60,15 @@ export default function OnboardingScreen({ onFinish, styles }) {
           />
           <Text style={styles.onboardingBrandText}>giro</Text>
         </View>
-        <Pressable onPress={onFinish} accessibilityRole="button">
+        <Pressable
+          style={({ pressed }) => [
+            styles.onboardingSkipButton,
+            pressed && styles.onboardingButtonPressed,
+          ]}
+          onPress={onFinish}
+          accessibilityRole="button"
+          accessibilityLabel="Pular introdução"
+        >
           <Text style={styles.onboardingSkip}>Pular</Text>
         </Pressable>
       </View>
@@ -68,31 +81,52 @@ export default function OnboardingScreen({ onFinish, styles }) {
         <Text style={styles.onboardingText}>{slide.text}</Text>
       </Animated.View>
       <View style={styles.onboardingBottom}>
-        <View style={styles.onboardingDots}>
-          {slides.map((item, dotIndex) => (
-            <View
-              key={item.eyebrow}
-              style={[
-                styles.onboardingDot,
-                dotIndex === index && styles.onboardingDotActive,
-              ]}
-            />
-          ))}
-        </View>
-        <Pressable
-          style={({ pressed }) => [
-            styles.onboardingButton,
-            pressed && styles.onboardingButtonPressed,
-          ]}
-          onPress={next}
-          accessibilityRole="button"
-          accessibilityLabel={index === slides.length - 1 ? "Começar" : "Próximo"}
-        >
-          <Text style={styles.onboardingButtonText}>
-            {index === slides.length - 1 ? "Começar no Giro" : "Continuar"}
+        <View style={styles.onboardingProgressRow}>
+          <View style={styles.onboardingDots} accessibilityLabel={`Etapa ${index + 1} de ${slides.length}`}>
+            {slides.map((item, dotIndex) => (
+              <View
+                key={item.eyebrow}
+                style={[
+                  styles.onboardingDot,
+                  dotIndex === index && styles.onboardingDotActive,
+                ]}
+              />
+            ))}
+          </View>
+          <Text style={styles.onboardingProgressText}>
+            {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
           </Text>
-          <Ionicons name="arrow-forward" size={18} color="#fff" />
-        </Pressable>
+        </View>
+        <View style={styles.onboardingNav}>
+          <Pressable
+            style={({ pressed }) => [
+              styles.onboardingBackButton,
+              index === 0 && styles.onboardingBackButtonDisabled,
+              pressed && index > 0 && styles.onboardingButtonPressed,
+            ]}
+            onPress={previous}
+            accessibilityRole="button"
+            accessibilityLabel="Voltar para a etapa anterior"
+            accessibilityState={{ disabled: index === 0 }}
+          >
+            <Ionicons name="arrow-back" size={18} color={index === 0 ? "#B8C2BA" : "#0D6A49"} />
+          </Pressable>
+          <Pressable
+            style={({ pressed }) => [
+              styles.onboardingButton,
+              styles.onboardingButtonFlex,
+              pressed && styles.onboardingButtonPressed,
+            ]}
+            onPress={next}
+            accessibilityRole="button"
+            accessibilityLabel={index === slides.length - 1 ? "Começar no Giro" : "Avançar para a próxima etapa"}
+          >
+            <Text style={styles.onboardingButtonText}>
+              {index === slides.length - 1 ? "Começar no Giro" : "Continuar"}
+            </Text>
+            <Ionicons name="arrow-forward" size={18} color="#fff" />
+          </Pressable>
+        </View>
       </View>
     </SafeAreaView>
   );
