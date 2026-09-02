@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   authBackText: { color: "#0D6A49", fontSize: 12, fontWeight: "800" },
   onboardingScreen: { flex: 1, backgroundColor: "#FFFDF8", paddingHorizontal: 16, paddingTop: 18, paddingBottom: 26 },
   onboardingScreenCompact: { paddingHorizontal: 18, paddingTop: 12, paddingBottom: 20 },
-  onboardingTop: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 8 },
+  onboardingTop: { width: "100%", maxWidth: 420, alignSelf: "center", flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 6, marginBottom: 8 },
   onboardingBrand: { flexDirection: "row", alignItems: "center", gap: 7 },
   onboardingLogo: { width: 36, height: 36 },
   onboardingBrandText: { color: "#18362A", fontSize: 23, fontWeight: "900" },
