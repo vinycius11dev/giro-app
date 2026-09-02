@@ -26,7 +26,7 @@
 - [x] Decisões técnicas.
 - [x] Roteiro de testes e evidências esperadas.
 - [x] Integrantes, RMs e divisão de responsabilidades preenchidos no README.
-- [x] Todas as telas descritas no README, com fluxo de navegação e responsabilidades documentados.
+- [x] Todas as telas descritas no README, com fluxo de navegação, responsabilidades e capturas organizadas em `docs/evidencias/`.
 
 ## APK instalável
 
@@ -40,6 +40,7 @@
 
 ## Evidências recomendadas
 
+- Capturas das telas principais organizadas em `docs/evidencias/` e vinculadas na galeria do README.
 - Vídeo de uma oferta registrada aparecendo no histórico.
 - Vídeo ou registro textual da navegação pelo dashboard, produtos, conta, alertas, oportunidades, relatórios e impacto.
 - Vídeo do APK instalado e aberto em Android.

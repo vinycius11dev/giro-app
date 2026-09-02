@@ -184,6 +184,56 @@ O roteiro manual de testes está em [docs/roteiro-de-testes.md](docs/roteiro-de-
 
 O fluxo principal é: **entrar → cadastrar produto → acompanhar a prioridade → escolher um destino → consultar o histórico e o impacto**. Para o CP6, ainda será anexado um vídeo curto de navegação e o registro do APK instalado em um aparelho Android.
 
+## Evidências visuais
+
+As capturas abaixo foram organizadas por fluxo e mostram a execução atual do aplicativo. Clique em qualquer miniatura para abrir a imagem em tamanho completo.
+
+### Acesso e conta
+
+| Login | Cadastro | Cadastro com CEP |
+| --- | --- | --- |
+| [<img src="docs/evidencias/01-login.png" width="180" alt="Tela de login" />](docs/evidencias/01-login.png) | [<img src="docs/evidencias/02-cadastro-conta.png" width="180" alt="Tela de cadastro" />](docs/evidencias/02-cadastro-conta.png) | [<img src="docs/evidencias/03-cadastro-cep-preenchido.png" width="180" alt="Cadastro com CEP preenchido" />](docs/evidencias/03-cadastro-cep-preenchido.png) |
+
+### Estoque e decisões
+
+| Painel | Produtos | Cadastro de produto |
+| --- | --- | --- |
+| [<img src="docs/evidencias/04-dashboard.png" width="180" alt="Painel inicial" />](docs/evidencias/04-dashboard.png) | [<img src="docs/evidencias/05-produtos.png" width="180" alt="Lista de produtos" />](docs/evidencias/05-produtos.png) | [<img src="docs/evidencias/06-cadastro-produto.png" width="180" alt="Cadastro de produto" />](docs/evidencias/06-cadastro-produto.png) |
+
+| Detalhe do produto | Histórico | Filtro de urgência |
+| --- | --- | --- |
+| [<img src="docs/evidencias/07-detalhe-produto.png" width="180" alt="Detalhe do produto" />](docs/evidencias/07-detalhe-produto.png) | [<img src="docs/evidencias/08-historico.png" width="180" alt="Histórico de ações" />](docs/evidencias/08-historico.png) | [<img src="docs/evidencias/19-filtro-agir-hoje.png" width="180" alt="Filtro agir hoje" />](docs/evidencias/19-filtro-agir-hoje.png) |
+
+### Conta e recursos
+
+| Conta | Planos | Perfil do estabelecimento |
+| --- | --- | --- |
+| [<img src="docs/evidencias/09-conta.png" width="180" alt="Tela de conta" />](docs/evidencias/09-conta.png) | [<img src="docs/evidencias/10-planos.png" width="180" alt="Tela de planos" />](docs/evidencias/10-planos.png) | [<img src="docs/evidencias/11-perfil-estabelecimento.png" width="180" alt="Perfil do estabelecimento" />](docs/evidencias/11-perfil-estabelecimento.png) |
+
+| Central de ajuda | Sobre o projeto | Modo escuro |
+| --- | --- | --- |
+| [<img src="docs/evidencias/12-ajuda.png" width="180" alt="Central de ajuda" />](docs/evidencias/12-ajuda.png) | [<img src="docs/evidencias/13-sobre-projeto.png" width="180" alt="Sobre o projeto" />](docs/evidencias/13-sobre-projeto.png) | [<img src="docs/evidencias/20-conta-modo-escuro.png" width="180" alt="Conta em modo escuro" />](docs/evidencias/20-conta-modo-escuro.png) |
+
+### Inteligência e impacto
+
+| Alertas | Oportunidades | Relatórios |
+| --- | --- | --- |
+| [<img src="docs/evidencias/14-alertas.png" width="180" alt="Tela de alertas" />](docs/evidencias/14-alertas.png) | [<img src="docs/evidencias/15-oportunidades.png" width="180" alt="Tela de oportunidades" />](docs/evidencias/15-oportunidades.png) | [<img src="docs/evidencias/16-relatorios.png" width="180" alt="Tela de relatórios" />](docs/evidencias/16-relatorios.png) |
+
+| Impacto | Onboarding |
+| --- | --- |
+| [<img src="docs/evidencias/17-impacto.png" width="180" alt="Tela de impacto" />](docs/evidencias/17-impacto.png) | [<img src="docs/evidencias/18-onboarding.png" width="180" alt="Onboarding" />](docs/evidencias/18-onboarding.png) |
+
+### Apresentação institucional
+
+| Visão | Como funciona |
+| --- | --- |
+| [<img src="docs/evidencias/21-apresentacao-visao.png" width="180" alt="Visão da apresentação" />](docs/evidencias/21-apresentacao-visao.png) | [<img src="docs/evidencias/24-apresentacao-fluxo.png" width="180" alt="Fluxo da apresentação" />](docs/evidencias/24-apresentacao-fluxo.png) |
+
+| Modelo de negócio | CP4, CP5 e CP6 | Modo escuro |
+| --- | --- | --- |
+| [<img src="docs/evidencias/22-apresentacao-negocio.png" width="180" alt="Modelo de negócio" />](docs/evidencias/22-apresentacao-negocio.png) | [<img src="docs/evidencias/23-apresentacao-cp4-cp6.png" width="180" alt="Apresentação dos checkpoints" />](docs/evidencias/23-apresentacao-cp4-cp6.png) | [<img src="docs/evidencias/25-apresentacao-modo-escuro.png" width="180" alt="Apresentação em modo escuro" />](docs/evidencias/25-apresentacao-modo-escuro.png) |
+
 ## Gerar APK (CP6)
 
 ```bash

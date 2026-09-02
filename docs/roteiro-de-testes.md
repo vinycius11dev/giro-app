@@ -40,6 +40,8 @@
 
 ## Evidências para a entrega
 
+As capturas de apoio dos fluxos abaixo estão organizadas em `docs/evidencias/` e reunidas na galeria visual do README.
+
 1. Vídeo curto navegando entre Início, Produtos e Histórico.
 2. Vídeo demonstrando cadastro de produto, filtro, oferta/doação e histórico atualizado.
 3. Vídeo ou registro textual das telas Alertas, Oportunidades, Relatórios e Impacto.
