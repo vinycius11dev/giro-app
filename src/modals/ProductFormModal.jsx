@@ -124,7 +124,11 @@ export default function ProductFormModal({
                 ]}
                 onPress={() => setForm({ ...form, category })}
               >
-                <Text>{categoryIcons[category]}</Text>
+                <Ionicons
+                  name={categoryIcons[category]}
+                  size={16}
+                  color={form.category === category ? "#0E6A49" : "#647269"}
+                />
                 <Text
                   style={[
                     styles.categoryText,

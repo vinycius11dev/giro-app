@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image, Pressable, Text, View } from "react-native";
-import { productImages } from "../data/initialData";
+import { categoryIcons, productImages } from "../data/initialData";
 import {
   getDueText,
   getProductStatus,
@@ -20,7 +20,11 @@ export default function ProductCard({ item, onPress, styles }) {
             accessibilityLabel={`Foto de ${item.name}`}
           />
         ) : (
-          <Text style={styles.emoji}>{item.icon}</Text>
+          <Ionicons
+            name={categoryIcons[item.category] || "cube-outline"}
+            size={24}
+            color="#0D6A49"
+          />
         )}
       </View>
       <View style={{ flex: 1 }}>

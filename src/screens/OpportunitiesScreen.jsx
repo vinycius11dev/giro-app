@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { FlatList, Image, Pressable, Text, View } from "react-native";
 import EmptyState from "../components/EmptyState";
 import ScreenHeader from "../components/ScreenHeader";
-import { productImages } from "../data/initialData";
+import { categoryIcons, productImages } from "../data/initialData";
 import { getDueText, getProductStatus } from "../utils/productDates";
 
 export default function OpportunitiesScreen({
@@ -53,7 +53,11 @@ export default function OpportunitiesScreen({
                     accessibilityLabel={`Foto de ${item.name}`}
                   />
                 ) : (
-                  <Text style={styles.emoji}>{item.icon}</Text>
+                  <Ionicons
+                    name={categoryIcons[item.category] || "cube-outline"}
+                    size={24}
+                    color="#0D6A49"
+                  />
                 )}
               </View>
               <View style={{ flex: 1 }}>

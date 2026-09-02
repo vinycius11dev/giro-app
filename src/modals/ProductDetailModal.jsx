@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 import ModalHeader from "../components/ModalHeader";
-import { productImages } from "../data/initialData";
+import { categoryIcons, productImages } from "../data/initialData";
 import {
   getDueText,
   getProductStatus,
@@ -112,7 +112,11 @@ export default function ProductDetailModal({
                   accessibilityLabel={`Foto de ${product.name}`}
                 />
               ) : (
-                <Text style={styles.detailEmoji}>{product.icon}</Text>
+                <Ionicons
+                  name={categoryIcons[product.category] || "cube-outline"}
+                  size={39}
+                  color="#0D6A49"
+                />
               )}
             </View>
             <Text style={styles.detailName}>{product.name}</Text>

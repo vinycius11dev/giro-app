@@ -1,10 +1,10 @@
 export const categoryIcons = {
-  Padaria: "🥐",
-  Laticínios: "🥛",
-  Hortifruti: "🍌",
-  Mercearia: "🛒",
-  Bebidas: "🧃",
-  Outros: "📦",
+  Padaria: "storefront-outline",
+  Laticínios: "water-outline",
+  Hortifruti: "nutrition-outline",
+  Mercearia: "basket-outline",
+  Bebidas: "cafe-outline",
+  Outros: "cube-outline",
 };
 
 // Fotos locais para o APK funcionar mesmo sem conexão com a internet.
@@ -29,7 +29,7 @@ export function createInitialProducts() {
       category: "Padaria",
       quantity: 18,
       expiry: isoFromToday(0),
-      icon: "🥐",
+      icon: categoryIcons.Padaria,
       image: productImages.Padaria,
     },
     {
@@ -38,7 +38,7 @@ export function createInitialProducts() {
       category: "Laticínios",
       quantity: 12,
       expiry: isoFromToday(1),
-      icon: "🥛",
+      icon: categoryIcons.Laticínios,
       image: productImages.Laticínios,
     },
     {
@@ -47,7 +47,7 @@ export function createInitialProducts() {
       category: "Hortifruti",
       quantity: 24,
       expiry: isoFromToday(3),
-      icon: "🍌",
+      icon: categoryIcons.Hortifruti,
       image: productImages.Hortifruti,
     },
     {
@@ -56,7 +56,7 @@ export function createInitialProducts() {
       category: "Mercearia",
       quantity: 6,
       expiry: isoFromToday(11),
-      icon: "☕",
+      icon: categoryIcons.Mercearia,
       image: productImages.Mercearia,
     },
   ];

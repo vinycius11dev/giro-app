@@ -312,7 +312,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   productImage: { width: "100%", height: "100%" },
-  emoji: { fontSize: 25 },
   productName: {
     color: "#23372C",
     fontSize: 15,
@@ -642,7 +641,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   detailImage: { width: "100%", height: "100%" },
-  detailEmoji: { fontSize: 42 },
   detailName: {
     color: "#1B3528",
     fontSize: 23,
