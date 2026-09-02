@@ -73,12 +73,14 @@ export default function OnboardingScreen({ onFinish, styles }) {
         </Pressable>
       </View>
       <Animated.View style={[styles.onboardingBody, { opacity: fade }]}>
-        <View style={[styles.onboardingIcon, { backgroundColor: slide.color }]}>
-          <Ionicons name={slide.icon} size={44} color="#0D6A49" />
+        <View style={styles.onboardingCard}>
+          <View style={[styles.onboardingIcon, { backgroundColor: slide.color }]}>
+            <Ionicons name={slide.icon} size={44} color="#0D6A49" />
+          </View>
+          <Text style={styles.onboardingEyebrow}>{slide.eyebrow}</Text>
+          <Text style={styles.onboardingTitle}>{slide.title}</Text>
+          <Text style={styles.onboardingText}>{slide.text}</Text>
         </View>
-        <Text style={styles.onboardingEyebrow}>{slide.eyebrow}</Text>
-        <Text style={styles.onboardingTitle}>{slide.title}</Text>
-        <Text style={styles.onboardingText}>{slide.text}</Text>
       </Animated.View>
       <View style={styles.onboardingBottom}>
         <View style={styles.onboardingProgressRow}>
