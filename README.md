@@ -153,6 +153,8 @@ No Expo, pressione `w` para navegador ou `a` para emulador Android. Também é p
 
 O app segue uma arquitetura local-first: tudo funciona com AsyncStorage e, quando o Supabase está configurado, produtos, histórico e perfil sincronizam com três tabelas Postgres (`giro_products`, `giro_history`, `giro_state`), separadas por `owner_id` — o id da conta ativa (`demo` na demonstração). A primeira sessão de cada conta envia os dados locais do aparelho como ponto de partida.
 
+`giro_products` guarda nome, categoria, quantidade, validade e ícone do produto; `giro_history` registra produto, ação e data; `giro_state` guarda o perfil do estabelecimento, preferências de alertas e acessibilidade, plano e uso. As imagens dos produtos são recursos locais do app. Na versão acadêmica, cadastro, login e sessão são locais no AsyncStorage: o aplicativo ainda não usa Supabase Auth, e esses dados de autenticação não são enviados ao banco.
+
 Para ativar a integração, crie o projeto gratuito, execute `supabase/schema.sql` no SQL Editor e preencha `.env.local` a partir do `.env.example`. O passo a passo completo está em [docs/supabase-setup.md](docs/supabase-setup.md). Sem as chaves, o app continua operando apenas com o armazenamento local.
 
 ## Manual de uso
