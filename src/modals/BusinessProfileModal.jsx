@@ -2,7 +2,6 @@ import AppIcon from "../components/AppIcon";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Modal,
   Pressable,
   SafeAreaView,
@@ -12,6 +11,7 @@ import {
 import FormField from "../components/FormField";
 import ModalHeader from "../components/ModalHeader";
 import { formatCep, lookupCep } from "../services/cep";
+import showAlert from "../utils/alerts";
 
 export default function BusinessProfileModal({
   visible,
@@ -54,7 +54,7 @@ export default function BusinessProfileModal({
 
   function submit() {
     if (!form.name.trim() || !form.business.trim() || !form.city.trim())
-      return Alert.alert(
+      return showAlert(
         "Confira os dados",
         "Preencha seu nome, estabelecimento e cidade.",
       );

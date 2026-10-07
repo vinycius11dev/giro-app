@@ -25,7 +25,7 @@ O Giro transforma uma simples data de validade em uma decisão prática: acompan
 - Classificação automática por validade.
 - Busca por nome/categoria e filtros de estoque por urgência.
 - Registro de oferta, doação e descarte em histórico.
-- Persistência local com AsyncStorage.
+- Persistência local com AsyncStorage e sincronização com Postgres no Supabase.
 - Perfil do responsável e estabelecimento editável.
 - Preferência de alertas persistente.
 - Notificações locais para lembrar produtos que vencem nos próximos dias.
@@ -72,7 +72,8 @@ Ao contrário de uma planilha de validade, o Giro orienta um destino para cada i
 ## Tecnologias e decisões técnicas
 
 - React Native + Expo, em JavaScript/JSX.
-- AsyncStorage para persistência local sem necessidade de backend.
+- Supabase (Postgres) como banco de dados remoto, com AsyncStorage como cache local-first.
+- `@supabase/supabase-js` com credenciais públicas via variáveis `EXPO_PUBLIC_*`.
 - expo-notifications para lembretes locais de validade no Android.
 - expo-linear-gradient para o destaque visual do painel.
 - Lucide React Native + react-native-svg para ícones vetoriais SVG consistentes.
@@ -124,13 +125,18 @@ app-mobile/
 │   ├── hooks/useInventory.js       # Estado e regras de negócio
 │   ├── hooks/useAuth.js            # Sessão e cadastro local
 │   ├── services/storage.js         # Persistência com AsyncStorage
+│   ├── services/supabase.js        # Cliente Supabase e leitura das envs
+│   ├── services/remoteStore.js     # Sincronização das tabelas remotas
 │   ├── services/notifications.js    # Lembretes locais de validade
 │   ├── services/cep.js              # Consulta e máscara de CEP (ViaCEP)
 │   ├── data/initialData.js         # Dados mockados iniciais
 │   ├── data/plans.js               # Limites e regras do modelo freemium
 │   ├── styles/appStyles.js         # Identidade visual compartilhada
+│   ├── utils/alerts.js             # Alertas e confirmações em Android e navegador
 │   └── utils/productDates.js       # Datas, validade e prioridade
 ├── docs/
+├── supabase/schema.sql              # Tabelas, RLS e grants do banco
+├── .env.example                     # Modelo das credenciais públicas
 └── eas.json
 ```
 
@@ -142,6 +148,12 @@ npm start
 ```
 
 No Expo, pressione `w` para navegador ou `a` para emulador Android. Também é possível ler o QR Code com Expo Go em Android.
+
+## Banco de dados (Supabase)
+
+O app segue uma arquitetura local-first: tudo funciona com AsyncStorage e, quando o Supabase está configurado, produtos, histórico e perfil sincronizam com três tabelas Postgres (`giro_products`, `giro_history`, `giro_state`), separadas por `owner_id` — o id da conta ativa (`demo` na demonstração). A primeira sessão de cada conta envia os dados locais do aparelho como ponto de partida.
+
+Para ativar a integração, crie o projeto gratuito, execute `supabase/schema.sql` no SQL Editor e preencha `.env.local` a partir do `.env.example`. O passo a passo completo está em [docs/supabase-setup.md](docs/supabase-setup.md). Sem as chaves, o app continua operando apenas com o armazenamento local.
 
 ## Manual de uso
 
@@ -258,8 +270,11 @@ O último comando fornece, na conta Expo conectada, um link para baixar o APK in
 - [x] Consulta de CEP integrada no cadastro e no perfil, com tratamento de CEP inválido e fallback manual.
 - [x] Identidade visual, logo, ícone e favicon configurados.
 - [x] Roteiro de testes e documentação textual das telas adicionados ao repositório.
+- [x] Integração com banco de dados Supabase (Postgres) com sincronização por conta.
+- [x] Fluxo CP5 verificado no navegador: onboarding, demonstração, telas principais, cadastro, busca e persistência após recarga.
+- [x] Sincronização Supabase verificada ponta a ponta; o produto de teste apareceu em `giro_products` e os registros temporários foram removidos.
 - [x] Build web validado com `npx expo export --platform web`.
-- [x] Expo Doctor aprovado com 21/21 verificações.
+- [ ] Atualizar quatro pacotes do Expo SDK 57 apontados pelo Expo Doctor (20/21 verificações): `expo`, `expo-font`, `expo-linear-gradient` e `expo-notifications`.
 - [ ] Gerar o APK pelo EAS usando a conta Expo do grupo.
 - [ ] Instalar o APK em Android e anexar o vídeo da execução real.
 

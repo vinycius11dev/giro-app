@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useMemo, useState } from "react";
-import { Alert, SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 import BottomTabs from "./src/components/BottomTabs";
 import FeedbackOverlay from "./src/components/FeedbackOverlay";
 import LoadingScreen from "./src/components/LoadingScreen";
@@ -26,12 +26,13 @@ import OnboardingScreen from "./src/screens/OnboardingScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import { loadOnboardingSeen, saveOnboardingSeen } from "./src/services/storage";
 import { syncExpiryNotifications } from "./src/services/notifications";
+import showAlert from "./src/utils/alerts";
 import buildThemeStyles from "./src/utils/themeStyles";
 import styles from "./src/styles/appStyles";
 
 export default function App() {
   const auth = useAuth();
-  const inventory = useInventory();
+  const inventory = useInventory(auth.session?.id ?? null);
   const [authMode, setAuthMode] = useState("login");
   const [activeTab, setActiveTab] = useState("home");
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -54,7 +55,7 @@ export default function App() {
 
   useEffect(() => {
     if (inventory.storageError)
-      Alert.alert("Aviso de armazenamento", inventory.storageError);
+      showAlert("Aviso de armazenamento", inventory.storageError);
   }, [inventory.storageError]);
 
   function openProductForm(product = null) {
@@ -64,7 +65,7 @@ export default function App() {
   }
 
   function confirmReset() {
-    Alert.alert(
+    showAlert(
       "Restaurar demonstração?",
       "Produtos, histórico e perfil voltarão aos dados iniciais.",
       [
@@ -319,7 +320,7 @@ export default function App() {
         onUpgrade={() => {
           inventory.upgradeToPro();
           setSubscriptionVisible(false);
-          Alert.alert("Giro Pro ativado", "Os recursos ampliados já estão disponíveis nesta demonstração.");
+          showAlert("Giro Pro ativado", "Os recursos ampliados já estão disponíveis nesta demonstração.");
         }}
         styles={themedStyles}
       />

@@ -1,6 +1,5 @@
 import AppIcon from "../components/AppIcon";
 import {
-  Alert,
   Image,
   Modal,
   Pressable,
@@ -11,6 +10,7 @@ import {
 } from "react-native";
 import ModalHeader from "../components/ModalHeader";
 import { categoryIcons, productImages } from "../data/initialData";
+import showAlert from "../utils/alerts";
 import {
   getDueText,
   getProductStatus,
@@ -50,14 +50,14 @@ export default function ProductDetailModal({
         ? "Planeje uma oferta para movimentar este produto antes do vencimento."
         : "Produto dentro do prazo. Continue acompanhando o giro.";
   function confirmAction(title, message, action, icon, tone) {
-    Alert.alert(title, message, [
+    showAlert(title, message, [
       { text: "Cancelar", style: "cancel" },
       {
         text: "Confirmar",
         onPress: () => {
           const result = registerAction(product, action, icon, tone);
           if (result?.ok === false) {
-            return Alert.alert("Limite do plano gratuito", result.message);
+            return showAlert("Limite do plano gratuito", result.message);
           }
           close();
         },
@@ -65,7 +65,7 @@ export default function ProductDetailModal({
     ]);
   }
   function confirmDelete() {
-    Alert.alert(
+    showAlert(
       "Excluir produto?",
       `${product.name} será removido sem registro no histórico.`,
       [

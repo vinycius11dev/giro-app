@@ -37,6 +37,8 @@
 | CT-33 | Consultar CEP          | No cadastro, informar `01001-000` e tocar em Buscar endereço pelo CEP | Endereço e cidade/estado são preenchidos pela ViaCEP. |
 | CT-34 | Tratar CEP inválido    | Informar um CEP incompleto ou inexistente | Mensagem orienta a correção e permite continuar preenchendo endereço manualmente. |
 | CT-35 | Consultar planos       | Em Conta, tocar em Plano Giro e ativar o Pro | Limites do plano grátis, benefícios do Pro e ativação simulada são exibidos. |
+| CT-36 | Sincronizar Supabase   | Com `.env.local` configurado, cadastrar produto e abrir `giro_products` no Table Editor | A linha aparece com o `owner_id` da conta ativa. |
+| CT-37 | Modo offline           | Remover `.env.local` ou ficar sem internet e usar o app | Funciona com AsyncStorage e avisa quando a sincronização falha. |
 
 ## Evidências para a entrega
 

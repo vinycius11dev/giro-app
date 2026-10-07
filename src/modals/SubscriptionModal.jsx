@@ -1,6 +1,7 @@
 import AppIcon from "../components/AppIcon";
-import { Alert, Modal, Pressable, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { Modal, Pressable, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ModalHeader from "../components/ModalHeader";
+import showAlert from "../utils/alerts";
 
 function limitText(value) {
   return Number.isFinite(value) ? String(value) : "Ilimitado";
@@ -25,7 +26,7 @@ export default function SubscriptionModal({ visible, close, plan, subscription, 
   const isPro = plan === "pro";
   function activatePro() {
     if (isPro) return;
-    Alert.alert(
+    showAlert(
       "Ativar Giro Pro?",
       "Esta demonstração simula a assinatura e não realiza nenhuma cobrança.",
       [

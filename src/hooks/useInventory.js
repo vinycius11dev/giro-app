@@ -8,6 +8,17 @@ import {
 } from "../data/initialData";
 import { loadAppData, saveAppData } from "../services/storage";
 import {
+  deleteHistoryEntry,
+  deleteProduct,
+  fetchWorkspace,
+  insertHistoryEntry,
+  pushWorkspace,
+  remoteEnabled,
+  resetWorkspace,
+  upsertProduct,
+  upsertWorkspaceState,
+} from "../services/remoteStore";
+import {
   currentDateLabel,
   getProductStatus,
   parseDate,
@@ -27,27 +38,83 @@ function freshData() {
   };
 }
 
-export default function useInventory() {
+export default function useInventory(ownerId = null) {
   const [data, setData] = useState(freshData);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState("");
   const [lastMutation, setLastMutation] = useState(null);
 
   useEffect(() => {
+    let cancelled = false;
+    setReady(false);
     loadAppData(freshData())
-      .then(setData)
+      .then(async (localData) => {
+        if (!remoteEnabled(ownerId)) {
+          if (!cancelled) setData(localData);
+          return;
+        }
+        try {
+          const remote = await fetchWorkspace(ownerId);
+          if (remote) {
+            if (!cancelled) {
+              setData({
+                ...localData,
+                products: remote.products,
+                history: remote.history,
+                profile: { ...localData.profile, ...remote.profile },
+                alertsEnabled: remote.alertsEnabled ?? localData.alertsEnabled,
+                darkMode: remote.darkMode ?? localData.darkMode,
+                largeText: remote.largeText ?? localData.largeText,
+                plan: remote.plan === "pro" ? "pro" : "free",
+                usage: remote.usage || localData.usage,
+              });
+            }
+          } else {
+            if (!cancelled) setData(localData);
+            await pushWorkspace(ownerId, localData);
+          }
+        } catch {
+          if (!cancelled) {
+            setData(localData);
+            setStorageError(
+              "Sem conexão com o Supabase. Usando os dados locais do aparelho.",
+            );
+          }
+        }
+      })
       .catch(() =>
         setStorageError("Não foi possível carregar os dados salvos."),
       )
-      .finally(() => setReady(true));
-  }, []);
+      .finally(() => {
+        if (!cancelled) setReady(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [ownerId]);
 
   useEffect(() => {
     if (!ready) return;
     saveAppData(data).catch(() =>
       setStorageError("Não foi possível salvar a última alteração."),
     );
-  }, [data, ready]);
+    if (remoteEnabled(ownerId)) {
+      upsertWorkspaceState(ownerId, data).catch(() =>
+        setStorageError(
+          "Alteração salva no aparelho, mas falhou a sincronização com o Supabase.",
+        ),
+      );
+    }
+  }, [data, ready, ownerId]);
+
+  function syncRemote(task) {
+    if (!remoteEnabled(ownerId)) return;
+    task().catch(() =>
+      setStorageError(
+        "Alteração salva no aparelho, mas falhou a sincronização com o Supabase.",
+      ),
+    );
+  }
 
   const sortedProducts = useMemo(
     () =>
@@ -114,6 +181,7 @@ export default function useInventory() {
       icon: categoryIcons[form.category],
       image: productImages[form.category] || null,
     };
+    syncRemote(() => upsertProduct(ownerId, product));
     setData((current) => ({
       ...current,
       products: editingId
@@ -131,6 +199,7 @@ export default function useInventory() {
   function removeProduct(id) {
     const product = data.products.find((item) => item.id === id);
     if (product) setLastMutation({ id: String(Date.now()), type: "remove", product });
+    syncRemote(() => deleteProduct(ownerId, id));
     setData((current) => {
       return {
         ...current,
@@ -151,6 +220,10 @@ export default function useInventory() {
       tone,
     };
     setLastMutation({ id: historyEntry.id, type: "action", product, historyId: historyEntry.id, action });
+    syncRemote(async () => {
+      await deleteProduct(ownerId, product.id);
+      await insertHistoryEntry(ownerId, historyEntry);
+    });
     setData((current) => ({
       ...current,
       products: current.products.filter((item) => item.id !== product.id),
@@ -161,6 +234,12 @@ export default function useInventory() {
   }
   function undoLastMutation() {
     if (!lastMutation) return;
+    syncRemote(async () => {
+      await upsertProduct(ownerId, lastMutation.product);
+      if (lastMutation.type === "action" && lastMutation.historyId) {
+        await deleteHistoryEntry(ownerId, lastMutation.historyId);
+      }
+    });
     setData((current) => {
       if (lastMutation.type === "remove") {
         return { ...current, products: [lastMutation.product, ...current.products] };
@@ -209,6 +288,7 @@ export default function useInventory() {
         usage: normalizeUsage(current.usage),
       };
     });
+    syncRemote(() => resetWorkspace(ownerId, freshData()));
   }
 
   return {

@@ -2,7 +2,6 @@ import AppIcon from "../components/AppIcon";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useEffect, useState } from "react";
 import {
-  Alert,
   Modal,
   Platform,
   Pressable,
@@ -14,6 +13,7 @@ import {
 import FormField from "../components/FormField";
 import ModalHeader from "../components/ModalHeader";
 import { categoryIcons } from "../data/initialData";
+import showAlert from "../utils/alerts";
 import { dateAfterDays, defaultExpiryDate, isValidISODate } from "../utils/productDates";
 
 const blankForm = () => ({
@@ -65,23 +65,23 @@ export default function ProductFormModal({
   function submit() {
     const normalizedQuantity = form.quantity.replace(",", ".");
     if (!form.name.trim())
-      return Alert.alert("Nome obrigatório", "Informe o nome do produto.");
+      return showAlert("Nome obrigatório", "Informe o nome do produto.");
     if (
       !Number.isFinite(Number(normalizedQuantity)) ||
       Number(normalizedQuantity) <= 0
     )
-      return Alert.alert(
+      return showAlert(
         "Quantidade inválida",
         "Informe uma quantidade maior que zero.",
       );
     if (!isValidISODate(form.expiry))
-      return Alert.alert(
+      return showAlert(
         "Data inválida",
         "Use uma data real no formato AAAA-MM-DD.",
       );
     const result = onSave({ ...form, quantity: normalizedQuantity }, product?.id);
     if (result?.ok === false) {
-      return Alert.alert("Limite do plano gratuito", result.message);
+      return showAlert("Limite do plano gratuito", result.message);
     }
     close();
   }
