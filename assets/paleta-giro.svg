@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-labelledby="title desc">
+  <title id="title">Paleta de cores da marca Giro</title>
+  <desc id="desc">Seis amostras de cor para a identidade visual do Giro, com nome, código hexadecimal e função de cada cor.</desc>
+  <rect width="1100" height="500" rx="28" fill="#FBFAF6"/>
+
+  <circle cx="65" cy="54" r="18" fill="#E9F6D5"/>
+  <path d="M58 58c0-10 8-16 17-17-1 9-6 17-17 17Zm0 0c4-5 8-8 13-11" fill="none" stroke="#0D6A49" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="96" y="54" fill="#1B3528" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2.2">GIRO  /  IDENTIDADE VISUAL</text>
+  <text x="48" y="102" fill="#1B3528" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="700">Paleta de cores</text>
+  <text x="1052" y="99" text-anchor="end" fill="#748078" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="1.5">NATUREZA · CONFIANÇA · AÇÃO</text>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <g transform="translate(48 137)">
+      <rect width="154" height="292" rx="18" fill="#FFFFFF" stroke="#E7ECE4"/>
+      <rect x="16" y="16" width="122" height="122" rx="14" fill="#0D6A49"/>
+      <text x="16" y="169" fill="#748078" font-size="10" font-weight="700" letter-spacing="1.2">PRIMÁRIA</text>
+      <text x="16" y="195" fill="#1B3528" font-size="15" font-weight="700">Verde Giro</text>
+      <text x="16" y="222" fill="#4F7060" font-size="13" font-weight="600">#0D6A49</text>
+      <text x="16" y="258" fill="#748078" font-size="11">Marca e confiança</text>
+    </g>
+    <g transform="translate(220 137)">
+      <rect width="154" height="292" rx="18" fill="#FFFFFF" stroke="#E7ECE4"/>
+      <rect x="16" y="16" width="122" height="122" rx="14" fill="#E76832"/>
+      <text x="16" y="169" fill="#748078" font-size="10" font-weight="700" letter-spacing="1.2">ACENTO</text>
+      <text x="16" y="195" fill="#1B3528" font-size="15" font-weight="700">Laranja Giro</text>
+      <text x="16" y="222" fill="#4F7060" font-size="13" font-weight="600">#E76832</text>
+      <text x="16" y="258" fill="#748078" font-size="11">Urgência e ação</text>
+    </g>
+    <g transform="translate(392 137)">
+      <rect width="154" height="292" rx="18" fill="#FFFFFF" stroke="#E7ECE4"/>
+      <rect x="16" y="16" width="122" height="122" rx="14" fill="#1B3528"/>
+      <text x="16" y="169" fill="#748078" font-size="10" font-weight="700" letter-spacing="1.2">CONTRASTE</text>
+      <text x="16" y="195" fill="#1B3528" font-size="15" font-weight="700">Verde profundo</text>
+      <text x="16" y="222" fill="#4F7060" font-size="13" font-weight="600">#1B3528</text>
+      <text x="16" y="258" fill="#748078" font-size="11">Títulos e leitura</text>
+    </g>
+    <g transform="translate(564 137)">
+      <rect width="154" height="292" rx="18" fill="#FFFFFF" stroke="#E7ECE4"/>
+      <rect x="16" y="16" width="122" height="122" rx="14" fill="#D9EFC0" stroke="#C7DDB0"/>
+      <text x="16" y="169" fill="#748078" font-size="10" font-weight="700" letter-spacing="1.2">APOIO</text>
+      <text x="16" y="195" fill="#1B3528" font-size="15" font-weight="700">Folha suave</text>
+      <text x="16" y="222" fill="#4F7060" font-size="13" font-weight="600">#D9EFC0</text>
+      <text x="16" y="258" fill="#748078" font-size="11">Acentos positivos</text>
+    </g>
+    <g transform="translate(736 137)">
+      <rect width="154" height="292" rx="18" fill="#FFFFFF" stroke="#E7ECE4"/>
+      <rect x="16" y="16" width="122" height="122" rx="14" fill="#FFFDF8" stroke="#E7ECE4"/>
+      <text x="16" y="169" fill="#748078" font-size="10" font-weight="700" letter-spacing="1.2">BASE</text>
+      <text x="16" y="195" fill="#1B3528" font-size="15" font-weight="700">Creme</text>
+      <text x="16" y="222" fill="#4F7060" font-size="13" font-weight="600">#FFFDF8</text>
+      <text x="16" y="258" fill="#748078" font-size="11">Fundo acolhedor</text>
+    </g>
+    <g transform="translate(908 137)">
+      <rect width="154" height="292" rx="18" fill="#FFFFFF" stroke="#E7ECE4"/>
+      <rect x="16" y="16" width="122" height="122" rx="14" fill="#748078"/>
+      <text x="16" y="169" fill="#748078" font-size="10" font-weight="700" letter-spacing="1.2">NEUTRO</text>
+      <text x="16" y="195" fill="#1B3528" font-size="15" font-weight="700">Sálvia</text>
+      <text x="16" y="222" fill="#4F7060" font-size="13" font-weight="600">#748078</text>
+      <text x="16" y="258" fill="#748078" font-size="11">Texto secundário</text>
+    </g>
+  </g>
+
+  <text x="48" y="468" fill="#748078" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12">Menos desperdício, mais resultado.</text>
+  <text x="1052" y="468" text-anchor="end" fill="#0D6A49" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">GIRO</text>
+</svg>
