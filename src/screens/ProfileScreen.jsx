@@ -26,6 +26,7 @@ export default function ProfileScreen({
   onHelp,
   onAbout,
   onSubscription,
+  onDatabaseSync,
   onRestartOnboarding,
   onReset,
   onLogout,
@@ -99,6 +100,13 @@ export default function ProfileScreen({
         icon="information-circle-outline"
         text="Sobre o projeto"
         onPress={onAbout}
+        styles={styles}
+      />
+      <SettingRow
+        icon="database-outline"
+        text="Sincronização com banco"
+        right="Ver dados"
+        onPress={onDatabaseSync}
         styles={styles}
       />
       <SettingRow

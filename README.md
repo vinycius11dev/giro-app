@@ -100,6 +100,7 @@ app-mobile/
 │   │   ├── ProductsScreen.jsx
 │   │   ├── HistoryScreen.jsx
 │   │   ├── ProfileScreen.jsx
+│   │   ├── DatabaseSyncScreen.jsx
 │   │   ├── AlertsScreen.jsx
 │   │   ├── OpportunitiesScreen.jsx
 │   │   ├── InsightsScreen.jsx
@@ -176,10 +177,10 @@ O resumo visual abaixo foi montado a partir de uma leitura real das tabelas pela
 6. No painel, toque em **Adicionar produto** e informe nome, categoria, quantidade e validade (`AAAA-MM-DD`). Os atalhos de 1, 3, 7 e 30 dias agilizam o preenchimento.
 7. Em **Produtos**, busque ou filtre por urgência e abra um item para ver a recomendação.
 8. Registre uma oferta, doação ou descarte. A ação fica guardada no histórico.
-9. Em **Conta**, edite o estabelecimento, configure os alertas locais, abra a ajuda, veja **Sobre o projeto** ou saia da conta.
+9. Em **Conta**, edite o estabelecimento, configure os alertas locais, abra a ajuda e **Sincronização com banco** para consultar os produtos, o histórico e o estado retornados pelo Supabase; também é possível ver **Sobre o projeto** ou sair da conta.
 10. Em **Plano Giro**, acompanhe o uso mensal do plano grátis e veja os benefícios do Giro Pro. A ativação é simulada localmente nesta entrega.
 11. Na página inicial, abra Alertas, Oportunidades, Relatórios ou Impacto.
-12. A conta, sessão e dados do estoque permanecem salvos localmente no dispositivo.
+12. A conta e a sessão permanecem locais; o estoque também fica salvo no dispositivo e sincroniza com o Supabase quando a integração está configurada.
 
 ## Testes e evidências
 
@@ -197,7 +198,8 @@ O roteiro manual de testes está em [docs/roteiro-de-testes.md](docs/roteiro-de-
 | Cadastro/edição de produto | Registra nome, categoria, quantidade e validade usando calendário, atalhos rápidos e validações. |
 | Detalhe do produto | Exibe a situação do item e permite ofertar, doar, descartar, editar ou excluir. |
 | Histórico | Mostra as ações já realizadas e o resultado das decisões sobre o estoque. |
-| Conta | Edita dados do estabelecimento, consulta CEP, controla alertas, tema, tamanho do texto, ajuda e logout. |
+| Conta | Edita dados do estabelecimento, consulta CEP, controla alertas, tema, tamanho do texto, abre a sincronização e a ajuda, e oferece logout. |
+| Sincronização | Consulta o Supabase sob demanda e mostra o resultado e os registros encontrados nas tabelas de produtos, histórico e estado, sem exibir identificadores ou credenciais. |
 | Alertas | Reúne produtos que exigem ação imediata, organizados por prioridade. |
 | Oportunidades | Sugere descontos e destinos para produtos próximos do vencimento. |
 | Relatórios | Apresenta totais, aproveitamento e distribuição do estoque por categoria. |

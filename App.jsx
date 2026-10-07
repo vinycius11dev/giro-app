@@ -21,6 +21,7 @@ import OpportunitiesScreen from "./src/screens/OpportunitiesScreen";
 import ProductsScreen from "./src/screens/ProductsScreen";
 import ProjectShowcaseScreen from "./src/screens/ProjectShowcaseScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import DatabaseSyncScreen from "./src/screens/DatabaseSyncScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import OnboardingScreen from "./src/screens/OnboardingScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
@@ -183,6 +184,7 @@ export default function App() {
     "opportunities",
     "insights",
     "impact",
+    "database",
   ].includes(activeTab);
   const goHome = () => setActiveTab("home");
 
@@ -231,9 +233,18 @@ export default function App() {
             onHelp={() => setHelpVisible(true)}
             onAbout={() => setAboutVisible(true)}
             onSubscription={() => setSubscriptionVisible(true)}
+            onDatabaseSync={() => setActiveTab("database")}
             onRestartOnboarding={() => setOnboardingSeen(false)}
             onReset={confirmReset}
             onLogout={handleLogout}
+            styles={themedStyles}
+          />
+        )}
+        {activeTab === "database" && (
+          <DatabaseSyncScreen
+            ownerId={auth.session?.id ?? null}
+            localData={inventory}
+            onBack={() => setActiveTab("profile")}
             styles={themedStyles}
           />
         )}

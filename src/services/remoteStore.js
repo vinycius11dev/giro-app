@@ -112,6 +112,7 @@ export async function fetchWorkspace(ownerId) {
   return {
     products: productsRes.data.map(rowToProduct),
     history: historyRes.data.map(rowToHistory),
+    stateExists: Boolean(stateRes.data),
     profile: stateRes.data?.profile || null,
     alertsEnabled: stateRes.data?.alerts_enabled,
     darkMode: stateRes.data?.dark_mode,
