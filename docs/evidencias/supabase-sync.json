@@ -1,0 +1,28 @@
+{
+  "verification_date": "2026-10-07",
+  "source": "Supabase Data API",
+  "scope": "Demo records only; account identifiers, profile contents, and credentials omitted.",
+  "tables": {
+    "giro_products": {
+      "count": 4,
+      "rows": [
+        { "name": "Banana prata", "category": "Hortifruti", "quantity": 24, "expiry": "2026-10-10" },
+        { "name": "Café em grãos", "category": "Mercearia", "quantity": 6, "expiry": "2026-10-18" },
+        { "name": "Croissant de manteiga", "category": "Padaria", "quantity": 18, "expiry": "2026-10-07" },
+        { "name": "Iogurte natural", "category": "Laticínios", "quantity": 12, "expiry": "2026-10-08" }
+      ]
+    },
+    "giro_history": {
+      "count": 2,
+      "rows": [
+        { "product": "Pão italiano", "action": "Oferta criada", "date_label": "Hoje" },
+        { "product": "Morangos orgânicos", "action": "Doação registrada", "date_label": "Ontem" }
+      ]
+    },
+    "giro_state": {
+      "count": 1,
+      "included_fields": ["profile", "alerts_enabled", "dark_mode", "large_text", "plan", "usage"],
+      "row_values_omitted": true
+    }
+  }
+}

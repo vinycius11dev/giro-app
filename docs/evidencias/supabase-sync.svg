@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850" role="img" aria-labelledby="title desc">
+  <title id="title">Evidência de sincronização do Giro com Supabase</title>
+  <desc id="desc">Resumo de dados de demonstração lidos diretamente do Supabase: quatro produtos, duas ações e um registro de estado.</desc>
+  <rect width="1200" height="850" rx="28" fill="#F6F8F4"/>
+  <rect x="0" y="0" width="1200" height="10" rx="5" fill="#0D6A49"/>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <circle cx="72" cy="63" r="22" fill="#D9EFC0"/>
+    <path d="M64 68c0-12 9-20 20-21-1 11-7 20-20 21Zm0 0c5-6 10-10 16-14" fill="none" stroke="#0D6A49" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="111" y="58" fill="#1B3528" font-size="13" font-weight="700" letter-spacing="2">GIRO  /  CP5</text>
+    <text x="111" y="89" fill="#1B3528" font-size="29" font-weight="700">Sincronização com Supabase</text>
+    <text x="64" y="130" fill="#748078" font-size="15">Resumo visual da leitura real das tabelas de demonstração</text>
+
+    <rect x="946" y="49" width="190" height="42" rx="21" fill="#E9F6D5"/>
+    <circle cx="971" cy="70" r="5" fill="#0D6A49"/>
+    <text x="987" y="75" fill="#0D6A49" font-size="12" font-weight="700" letter-spacing="1">LEITURA CONFIRMADA</text>
+
+    <g>
+      <rect x="64" y="164" width="338" height="102" rx="18" fill="#FFFFFF" stroke="#E3EAE2"/>
+      <rect x="82" y="184" width="42" height="42" rx="12" fill="#E9F6D5"/>
+      <path d="M94 210v-14h18v14m-14-14v-5h10v5m-10 8h10" fill="none" stroke="#0D6A49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="140" y="201" fill="#748078" font-size="12" font-weight="600">giro_products</text>
+      <text x="140" y="235" fill="#1B3528" font-size="25" font-weight="700">4 <tspan fill="#748078" font-size="14" font-weight="500">produtos</tspan></text>
+    </g>
+    <g>
+      <rect x="431" y="164" width="338" height="102" rx="18" fill="#FFFFFF" stroke="#E3EAE2"/>
+      <rect x="449" y="184" width="42" height="42" rx="12" fill="#FFF0E8"/>
+      <path d="M460 196h20m-20 7h20m-20 7h13" fill="none" stroke="#E76832" stroke-width="2" stroke-linecap="round"/>
+      <text x="507" y="201" fill="#748078" font-size="12" font-weight="600">giro_history</text>
+      <text x="507" y="235" fill="#1B3528" font-size="25" font-weight="700">2 <tspan fill="#748078" font-size="14" font-weight="500">ações</tspan></text>
+    </g>
+    <g>
+      <rect x="798" y="164" width="338" height="102" rx="18" fill="#FFFFFF" stroke="#E3EAE2"/>
+      <rect x="816" y="184" width="42" height="42" rx="12" fill="#EEF2EC"/>
+      <circle cx="837" cy="198" r="6" fill="none" stroke="#4F7060" stroke-width="2"/>
+      <path d="M825 216c1-6 5-9 12-9s11 3 12 9" fill="none" stroke="#4F7060" stroke-width="2" stroke-linecap="round"/>
+      <text x="874" y="201" fill="#748078" font-size="12" font-weight="600">giro_state</text>
+      <text x="874" y="235" fill="#1B3528" font-size="25" font-weight="700">1 <tspan fill="#748078" font-size="14" font-weight="500">estado</tspan></text>
+    </g>
+
+    <rect x="64" y="292" width="704" height="432" rx="20" fill="#FFFFFF" stroke="#E3EAE2"/>
+    <text x="92" y="333" fill="#1B3528" font-size="17" font-weight="700">Produtos sincronizados</text>
+    <text x="740" y="333" text-anchor="end" fill="#748078" font-size="12">giro_products</text>
+    <rect x="88" y="354" width="656" height="42" rx="10" fill="#F4F7F2"/>
+    <text x="104" y="380" fill="#748078" font-size="11" font-weight="700" letter-spacing=".6">PRODUTO</text>
+    <text x="398" y="380" fill="#748078" font-size="11" font-weight="700" letter-spacing=".6">CATEGORIA</text>
+    <text x="563" y="380" fill="#748078" font-size="11" font-weight="700" letter-spacing=".6">QTD.</text>
+    <text x="638" y="380" fill="#748078" font-size="11" font-weight="700" letter-spacing=".6">VALIDADE</text>
+
+    <g fill="#1B3528" font-size="13">
+      <text x="104" y="431" font-weight="600">Banana prata</text><text x="398" y="431" fill="#617068">Hortifruti</text><text x="563" y="431">24 kg</text><text x="638" y="431">10 out 2026</text>
+      <text x="104" y="493" font-weight="600">Café em grãos</text><text x="398" y="493" fill="#617068">Mercearia</text><text x="563" y="493">6 un.</text><text x="638" y="493">18 out 2026</text>
+      <text x="104" y="555" font-weight="600">Croissant de manteiga</text><text x="398" y="555" fill="#617068">Padaria</text><text x="563" y="555">18 un.</text><text x="638" y="555">07 out 2026</text>
+      <text x="104" y="617" font-weight="600">Iogurte natural</text><text x="398" y="617" fill="#617068">Laticínios</text><text x="563" y="617">12 un.</text><text x="638" y="617">08 out 2026</text>
+    </g>
+    <path d="M88 449h656M88 511h656M88 573h656M88 635h656" stroke="#EDF1EB"/>
+    <rect x="92" y="667" width="7" height="7" rx="3.5" fill="#0D6A49"/>
+    <text x="108" y="675" fill="#617068" font-size="11">Dados de demonstração armazenados no banco remoto</text>
+
+    <rect x="792" y="292" width="344" height="248" rx="20" fill="#FFFFFF" stroke="#E3EAE2"/>
+    <text x="820" y="333" fill="#1B3528" font-size="17" font-weight="700">Histórico de ações</text>
+    <text x="1108" y="333" text-anchor="end" fill="#748078" font-size="12">giro_history</text>
+    <rect x="816" y="362" width="296" height="70" rx="12" fill="#FBFAF6"/>
+    <circle cx="839" cy="397" r="7" fill="#E76832"/>
+    <text x="858" y="391" fill="#1B3528" font-size="13" font-weight="600">Pão italiano</text>
+    <text x="858" y="413" fill="#617068" font-size="11">Oferta criada · Hoje</text>
+    <rect x="816" y="446" width="296" height="70" rx="12" fill="#FBFAF6"/>
+    <circle cx="839" cy="481" r="7" fill="#0D6A49"/>
+    <text x="858" y="475" fill="#1B3528" font-size="13" font-weight="600">Morangos orgânicos</text>
+    <text x="858" y="497" fill="#617068" font-size="11">Doação registrada · Ontem</text>
+
+    <rect x="792" y="560" width="344" height="164" rx="20" fill="#E9F6D5"/>
+    <text x="820" y="598" fill="#0D6A49" font-size="12" font-weight="700" letter-spacing="1">ESTADO DA CONTA</text>
+    <text x="820" y="632" fill="#1B3528" font-size="15" font-weight="700">1 registro em giro_state</text>
+    <text x="820" y="662" fill="#4F7060" font-size="12">Perfil, preferências, plano e uso.</text>
+    <text x="820" y="687" fill="#4F7060" font-size="11">Valores pessoais ocultados nesta evidência.</text>
+
+    <path d="M64 766h1072" stroke="#DDE5DA"/>
+    <text x="64" y="800" fill="#748078" font-size="11">Evidência de leitura real da Supabase Data API · ambiente acadêmico</text>
+    <text x="1136" y="800" text-anchor="end" fill="#748078" font-size="11">IDs de conta e credenciais omitidos</text>
+  </g>
+</svg>

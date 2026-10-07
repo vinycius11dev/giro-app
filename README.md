@@ -160,6 +160,12 @@ O app segue uma arquitetura local-first: tudo funciona com AsyncStorage e, quand
 
 Para ativar a integração, crie o projeto gratuito, execute `supabase/schema.sql` no SQL Editor e preencha `.env.local` a partir do `.env.example`. O passo a passo completo está em [docs/supabase-setup.md](docs/supabase-setup.md). Sem as chaves, o app continua operando apenas com o armazenamento local.
 
+### Evidência de sincronização
+
+O resumo visual abaixo foi montado a partir de uma leitura real das tabelas pela Supabase Data API. Ele mostra apenas dados de demonstração; identificadores da conta, conteúdo do perfil e credenciais foram omitidos. O [registro JSON sanitizado](docs/evidencias/supabase-sync.json) acompanha os mesmos dados.
+
+![Resumo dos dados de demonstração sincronizados com o Supabase](docs/evidencias/supabase-sync.svg)
+
 ## Manual de uso
 
 1. Na primeira abertura, avance pelo onboarding ou toque em **Pular**.
